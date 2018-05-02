@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CredentialsService } from './credentials.service';
 import { TranslateService } from '@ngx-translate/core';
 import { config } from '../../../../config/config';
-import { AuthenticationFailedException } from './exceptions/authentication.failed.exception';
 
 @Injectable()
 export class TokenAuthService {

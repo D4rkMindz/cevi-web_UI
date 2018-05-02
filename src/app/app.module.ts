@@ -1,19 +1,19 @@
 ///<reference path="../../node_modules/@ngx-progressbar/http/ng-progress-http.module.d.ts"/>
-import {BrowserModule} from '@angular/platform-browser';
-import {APP_INITIALIZER, NgModule} from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 
-import {AppRoutingModule} from './app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 
-import {AppComponent} from './app.component';
-import {BootstrapService} from './services/bootstrap/bootstrap.service';
-import {NgForageConfig} from 'ngforage';
-import {config} from './config/config';
-import {AuthGuard} from './guards/auth.guard';
-import {SharedModule} from './modules/shared/shared.module';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
-import {HttpClient} from '@angular/common/http';
-import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { AppComponent } from './app.component';
+import { BootstrapService } from './services/bootstrap/bootstrap.service';
+import { NgForageConfig } from 'ngforage';
+import { config } from './config/config';
+import { AuthGuard } from './guards/auth.guard';
+import { SharedModule } from './modules/shared/shared.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 
 @NgModule({

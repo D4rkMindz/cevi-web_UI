@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import {config} from '../../../config/config';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {UserDataService} from '../../shared/services/user/user-data.service';
-import {MatDialog} from '@angular/material';
-import {TranslateService} from '@ngx-translate/core';
-import {UserInfoDialogComponent} from '../user-info-dialog/user-info-dialog.component';
+import { Component } from '@angular/core';
+import { config } from '../../../config/config';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { UserDataService } from '../../shared/services/user/user-data.service';
+import { MatDialog } from '@angular/material';
+import { TranslateService } from '@ngx-translate/core';
+import { UserInfoDialogComponent } from '../user-info-dialog/user-info-dialog.component';
 
 @Component({
   selector: 'cevi-web-profile',

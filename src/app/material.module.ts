@@ -1,4 +1,4 @@
-import {ModuleWithProviders, NgModule} from '@angular/core';
+import { NgModule } from '@angular/core';
 import {
   MatAutocompleteModule,
   MatButtonModule,
@@ -33,7 +33,7 @@ import {
   MatToolbarModule,
   MatTooltipModule,
 } from '@angular/material';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -110,9 +110,4 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
   ]
 })
 export class MaterialModule {
-  // public static forRoot(): ModuleWithProviders {
-  //   return {
-  //     ngModule: MaterialModule,
-  //   };
-  // }
 }

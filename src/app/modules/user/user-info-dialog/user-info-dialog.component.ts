@@ -4,12 +4,12 @@ import { MatDialogRef } from '@angular/material';
 import { config } from '../../../config/config';
 import { TranslateService } from '@ngx-translate/core';
 import { _ } from '@biesbjerg/ngx-translate-extract/dist/utils/utils';
-import {HttpService} from '../../shared/services/http/http.service';
-import {SecureHttpService} from '../../shared/services/http/secure-http.service';
-import {UserDataService} from '../../shared/services/user/user-data.service';
-import {UserLoaderService} from '../../shared/services/loaders/user/user-loader.service';
-import {SnackbarService} from '../../shared/services/snackbar/snackbar.service';
-import {__} from '../../../functions/translation';
+import { HttpService } from '../../shared/services/http/http.service';
+import { SecureHttpService } from '../../shared/services/http/secure-http.service';
+import { UserDataService } from '../../shared/services/user/user-data.service';
+import { UserLoaderService } from '../../shared/services/loaders/user/user-loader.service';
+import { SnackbarService } from '../../shared/services/snackbar/snackbar.service';
+import { __ } from '../../../functions/translation';
 
 @Component({
   selector: 'cevi-web-user-info-dialog',
@@ -22,13 +22,6 @@ export class UserInfoDialogComponent implements OnInit {
   public genders;
   public lang: string;
   public selectedGender: string;
-
-  /**
-   * On init life cicle hook
-   */
-  ngOnInit() {
-    this.prepareForm();
-  }
 
   /**
    * UserInfoDialogComponent constructor
@@ -50,6 +43,13 @@ export class UserInfoDialogComponent implements OnInit {
               private userLoader: UserLoaderService,
               private snackbar: SnackbarService) {
     this.lang = this.translate.currentLang.slice(0, 2);
+  }
+
+  /**
+   * On init life cicle hook
+   */
+  ngOnInit() {
+    this.prepareForm();
   }
 
   /**

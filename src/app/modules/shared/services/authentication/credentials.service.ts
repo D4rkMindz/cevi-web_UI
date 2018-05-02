@@ -1,48 +1,12 @@
-import {Injectable} from '@angular/core';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class CredentialsService {
 
-  private _username = null;
-  private _password = null;
-  private _email = null;
-  private _expiresAt: Date;
-  private _token = null;
-  private _userId = null;
   private _usernameObs: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
-  get userId(): any {
-    return this._userId;
-  }
-
-  set userId(value: any) {
-    this._userId = value;
-  }
-
-  get token(): any {
-    return this._token;
-  }
-
-  set token(value: any) {
-    this._token = value;
-  }
-
-  get email(): any {
-    return this._email;
-  }
-
-  set email(value: any) {
-    this._email = value;
-  }
-
-  get password(): any {
-    return this._password;
-  }
-
-  set password(value: any) {
-    this._password = value;
-  }
+  private _username = null;
 
   get username(): any {
     return this._username;
@@ -53,12 +17,54 @@ export class CredentialsService {
     this._username = value;
   }
 
+  private _password = null;
+
+  get password(): any {
+    return this._password;
+  }
+
+  set password(value: any) {
+    this._password = value;
+  }
+
+  private _email = null;
+
+  get email(): any {
+    return this._email;
+  }
+
+  set email(value: any) {
+    this._email = value;
+  }
+
+  private _expiresAt: Date;
+
   get expiresAt(): Date {
     return this._expiresAt;
   }
 
   set expiresAt(value: Date) {
     this._expiresAt = value;
+  }
+
+  private _token = null;
+
+  get token(): any {
+    return this._token;
+  }
+
+  set token(value: any) {
+    this._token = value;
+  }
+
+  private _userId = null;
+
+  get userId(): any {
+    return this._userId;
+  }
+
+  set userId(value: any) {
+    this._userId = value;
   }
 
   public clear() {

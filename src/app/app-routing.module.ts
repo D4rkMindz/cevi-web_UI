@@ -1,6 +1,6 @@
-import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
-import {AuthGuard} from './guards/auth.guard';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -29,5 +29,7 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule {
-  constructor() {console.log('AppRouting');}
+  constructor() {
+    console.log('AppRouting');
+  }
 }

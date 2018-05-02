@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component,  ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Router } from '@angular/router';
@@ -7,7 +7,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { ReadableLanguageConverterService } from '../../shared/services/translate/readble-language-converter.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { CredentialsService } from '../../shared/services/authentication/credentials.service';
-import { HttpService } from '../../shared/services/http/http.service';
 import { UserDataService } from '../../shared/services/user/user-data.service';
 
 @Component({
@@ -36,6 +35,28 @@ export class NavbarComponent {
   }
 
   /**
+   * Change language to specific one
+   * @param {string} language
+   */
+  public changeLanguageTo(language: string) {
+    this.router.navigate([], {queryParams: {lang: language}});
+  }
+
+  /**
+   * Toggle sidenav
+   */
+  public toggle() {
+    this.sidenav.toggle();
+  }
+
+  /**
+   * Close sidenav
+   */
+  public close() {
+    this.sidenav.close();
+  }
+
+  /**
    * Register mobile query for screen width
    */
   private registerMobileQuery() {
@@ -60,27 +81,5 @@ export class NavbarComponent {
 
       this.readableLang.getReadbleLanguage(lang).then(readableLang => this.readableLanguage.next(readableLang));
     });
-  }
-
-  /**
-   * Change language to specific one
-   * @param {string} language
-   */
-  public changeLanguageTo(language: string) {
-    this.router.navigate([], {queryParams: {lang: language}});
-  }
-
-  /**
-   * Toggle sidenav
-   */
-  public toggle() {
-    this.sidenav.toggle();
-  }
-
-  /**
-   * Close sidenav
-   */
-  public close() {
-    this.sidenav.close();
   }
 }

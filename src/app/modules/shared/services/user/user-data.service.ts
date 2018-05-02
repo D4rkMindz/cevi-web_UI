@@ -1,100 +1,22 @@
-import {Injectable} from '@angular/core';
-import {toDate} from '../../../../functions/to-date';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import { Injectable } from '@angular/core';
+import { toDate } from '../../../../functions/to-date';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class UserDataService {
-  get urlObs(): BehaviorSubject<string> {
-    return this._urlObs;
-  }
-
-  get archived_byObs(): BehaviorSubject<string> {
-    return this._archived_byObs;
-  }
-
-  get archived_atObs(): BehaviorSubject<Date> {
-    return this._archived_atObs;
-  }
-
-  get modified_byObs(): BehaviorSubject<string> {
-    return this._modified_byObs;
-  }
-
-  get modified_atObs(): BehaviorSubject<Date> {
-    return this._modified_atObs;
-  }
-
-  get created_byObs(): BehaviorSubject<string> {
-    return this._created_byObs;
-  }
-
-  get created_atObs(): BehaviorSubject<Date> {
-    return this._created_atObs;
-  }
-
-  get signup_completedObs(): BehaviorSubject<boolean> {
-    return this._signup_completedObs;
-  }
-
-  get js_certificate_untilObs(): BehaviorSubject<number> {
-    return this._js_certificate_untilObs;
-  }
-
-  get js_certificateObs(): BehaviorSubject<boolean> {
-    return this._js_certificateObs;
-  }
-
-  get birthdateObs(): BehaviorSubject<Date> {
-    return this._birthdateObs;
-  }
-
-  get addressObs(): BehaviorSubject<{
-    city: { id: string; name_de: string; name_en: string; name_fr: string; name_it: string };
-    street: string
-  }> {
-    return this._addressObs;
-  }
-
-  get usernameObs(): BehaviorSubject<string> {
-    return this._usernameObs;
-  }
-
-  get languageObs(): BehaviorSubject<{ full_name: string; abbreviation: string }> {
-    return this._languageObs;
-  }
-
-  get genderObs(): BehaviorSubject<{ id: string; name_de: string; name_en: string; name_fr: string; name_it: string }> {
-    return this._genderObs;
-  }
-
-  get emailObs(): BehaviorSubject<string> {
-    return this._emailObs;
-  }
-
-  get cevi_nameObs(): BehaviorSubject<string> {
-    return this._cevi_nameObs;
-  }
-
-  get last_nameObs(): BehaviorSubject<string> {
-    return this._last_nameObs;
-  }
-
-  get first_nameObs(): BehaviorSubject<string> {
-    return this._first_nameObs;
-  }
-
-  get positionObs(): BehaviorSubject<{ id: string; name_de: string; name_en: string; name_fr: string; name_it: string }> {
-    return this._positionObs;
-  }
-
-  get departmentObs(): BehaviorSubject<{ id: string; name: string }> {
-    return this._departmentObs;
-  }
-
   /**
    * Department entity
    */
   private _department: { id: string, name: string };
+
+  get department(): { id: string; name: string } {
+    return this._department;
+  }
+
+  set department(value: { id: string; name: string }) {
+    this._departmentObs.next(value);
+    this._department = value;
+  }
 
   private _departmentObs: BehaviorSubject<{
     id: string, name: string
@@ -104,12 +26,35 @@ export class UserDataService {
     id: null,
     name: null,
   });
+
+  get departmentObs(): BehaviorSubject<{ id: string; name: string }> {
+    return this._departmentObs;
+  }
+
   private _id: string;
+
+  get id(): string {
+    return this._id;
+  }
+
+  set id(value: string) {
+    this._id = value;
+  }
 
   /**
    * Position entity
    */
   private _position: { id: string, name_de: string, name_en: string, name_fr: string, name_it: string };
+
+  get position(): { id: string; name_de: string; name_en: string; name_fr: string; name_it: string } {
+    return this._position;
+  }
+
+  set position(value: { id: string; name_de: string; name_en: string; name_fr: string; name_it: string }) {
+    this._positionObs.next(value);
+    this._position = value;
+  }
+
   private _positionObs: BehaviorSubject<{
     id: string, name_de: string, name_en: string, name_fr: string, name_it: string
   }> = new BehaviorSubject<{
@@ -122,34 +67,104 @@ export class UserDataService {
     name_it: null,
   });
 
+  get positionObs(): BehaviorSubject<{ id: string; name_de: string; name_en: string; name_fr: string; name_it: string }> {
+    return this._positionObs;
+  }
+
   /**
    * First name entity
    */
   private _first_name: string;
+
+  get first_name(): string {
+    return this._first_name;
+  }
+
+  set first_name(value: string) {
+    this._first_nameObs.next(value);
+    this._first_name = value;
+  }
+
   private _first_nameObs: BehaviorSubject<string> = new BehaviorSubject<string>(null);
+
+  get first_nameObs(): BehaviorSubject<string> {
+    return this._first_nameObs;
+  }
 
   /**
    * Last name entity
    */
   private _last_name: string;
+
+  get last_name(): string {
+    return this._last_name;
+  }
+
+  set last_name(value: string) {
+    this._last_nameObs.next(value);
+    this._last_name = value;
+  }
+
   private _last_nameObs: BehaviorSubject<string> = new BehaviorSubject<string>(null);
+
+  get last_nameObs(): BehaviorSubject<string> {
+    return this._last_nameObs;
+  }
 
   /**
    * Cevi name entity
    */
   private _cevi_name: string;
+
+  get cevi_name(): string {
+    return this._cevi_name;
+  }
+
+  set cevi_name(value: string) {
+    this._cevi_nameObs.next(value);
+    this._cevi_name = value;
+  }
+
   private _cevi_nameObs: BehaviorSubject<string> = new BehaviorSubject<string>(null);
+
+  get cevi_nameObs(): BehaviorSubject<string> {
+    return this._cevi_nameObs;
+  }
 
   /**
    * Email entity
    */
   private _email: string;
+
+  get email(): string {
+    return this._email;
+  }
+
+  set email(value: string) {
+    this._emailObs.next(value);
+    this._email = value;
+  }
+
   private _emailObs: BehaviorSubject<string> = new BehaviorSubject<string>(null);
+
+  get emailObs(): BehaviorSubject<string> {
+    return this._emailObs;
+  }
 
   /**
    * Gender entity
    */
   private _gender: { id: string, name_de: string, name_en: string, name_fr: string, name_it: string };
+
+  get gender(): { id: string; name_de: string; name_en: string; name_fr: string; name_it: string } {
+    return this._gender;
+  }
+
+  set gender(value: { id: string; name_de: string; name_en: string; name_fr: string; name_it: string }) {
+    this._genderObs.next(value);
+    this._gender = value;
+  }
+
   private _genderObs: BehaviorSubject<{
     id: string, name_de: string, name_en: string, name_fr: string, name_it: string
   }> = new BehaviorSubject<{
@@ -162,10 +177,24 @@ export class UserDataService {
     name_it: null,
   });
 
+  get genderObs(): BehaviorSubject<{ id: string; name_de: string; name_en: string; name_fr: string; name_it: string }> {
+    return this._genderObs;
+  }
+
   /**
    * Language entity
    */
   private _language: { full_name: string, abbreviation: string };
+
+  get language(): { full_name: string; abbreviation: string } {
+    return this._language;
+  }
+
+  set language(value: { full_name: string; abbreviation: string }) {
+    this._languageObs.next(value);
+    this._language = value;
+  }
+
   private _languageObs: BehaviorSubject<{
     full_name: string, abbreviation: string
   }> = new BehaviorSubject<{
@@ -175,11 +204,29 @@ export class UserDataService {
     abbreviation: null,
   });
 
+  get languageObs(): BehaviorSubject<{ full_name: string; abbreviation: string }> {
+    return this._languageObs;
+  }
+
   /**
    * Username entity
    */
   private _username: string;
+
+  get username(): string {
+    return this._username;
+  }
+
+  set username(value: string) {
+    this._usernameObs.next(value);
+    this._username = value;
+  }
+
   private _usernameObs: BehaviorSubject<string> = new BehaviorSubject<string>(null);
+
+  get usernameObs(): BehaviorSubject<string> {
+    return this._usernameObs;
+  }
 
   /**
    * Address entity
@@ -187,6 +234,16 @@ export class UserDataService {
   private _address: {
     city: { id: string, name_de: string, name_en: string, name_fr: string, name_it: string }, street: string
   };
+
+  get address(): { city: { id: string; name_de: string; name_en: string; name_fr: string; name_it: string }; street: string } {
+    return this._address;
+  }
+
+  set address(value: { city: { id: string; name_de: string; name_en: string; name_fr: string; name_it: string }; street: string }) {
+    this._addressObs.next(value);
+    this._address = value;
+  }
+
   private _addressObs: BehaviorSubject<{
     city: { id: string, name_de: string, name_en: string, name_fr: string, name_it: string }, street: string
   }> = new BehaviorSubject<{
@@ -201,39 +258,208 @@ export class UserDataService {
     }, street: null,
   });
 
+  get addressObs(): BehaviorSubject<{
+    city: { id: string; name_de: string; name_en: string; name_fr: string; name_it: string };
+    street: string
+  }> {
+    return this._addressObs;
+  }
+
   /**
    * Birthdate entity
    */
   private _birthdate: Date;
+
+  get birthdate(): Date {
+    return this._birthdate;
+  }
+
+  set birthdate(value: Date) {
+    this._birthdateObs.next(value);
+    this._birthdate = value;
+  }
+
   private _birthdateObs: BehaviorSubject<Date> = new BehaviorSubject<Date>(null);
+
+  get birthdateObs(): BehaviorSubject<Date> {
+    return this._birthdateObs;
+  }
 
   /**
    * JS certificate entity
    */
   private _js_certificate: boolean;
+
+  get js_certificate(): boolean {
+    return this._js_certificate;
+  }
+
+  set js_certificate(value: boolean) {
+    this._js_certificateObs.next(value);
+    this._js_certificate = value;
+  }
+
   private _js_certificateObs: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(null);
+
+  get js_certificateObs(): BehaviorSubject<boolean> {
+    return this._js_certificateObs;
+  }
+
   private _js_certificate_until: number;
+
+  get js_certificate_until(): number {
+    return this._js_certificate_until;
+  }
+
+  set js_certificate_until(value: number) {
+    this._js_certificate_untilObs.next(value);
+    this._js_certificate_until = value;
+  }
+
   private _js_certificate_untilObs: BehaviorSubject<number> = new BehaviorSubject<number>(null);
+
+  get js_certificate_untilObs(): BehaviorSubject<number> {
+    return this._js_certificate_untilObs;
+  }
 
   /**
    * Meta entities
    */
   private _signup_completed: boolean;
+
+  get signup_completed(): boolean {
+    return this._signup_completed;
+  }
+
+  set signup_completed(value: boolean) {
+    this._signup_completedObs.next(value);
+    this._signup_completed = value;
+  }
+
   private _signup_completedObs: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(null);
+
+  get signup_completedObs(): BehaviorSubject<boolean> {
+    return this._signup_completedObs;
+  }
+
   private _created_at: Date;
+
+  get created_at(): Date {
+    return this._created_at;
+  }
+
+  set created_at(value: Date) {
+    this._created_atObs.next(value);
+    this._created_at = value;
+  }
+
   private _created_atObs: BehaviorSubject<Date> = new BehaviorSubject<Date>(null);
+
+  get created_atObs(): BehaviorSubject<Date> {
+    return this._created_atObs;
+  }
+
   private _created_by: string;
+
+  get created_by(): string {
+    return this._created_by;
+  }
+
+  set created_by(value: string) {
+    this._created_byObs.next(value);
+    this._created_by = value;
+  }
+
   private _created_byObs: BehaviorSubject<string> = new BehaviorSubject<string>(null);
+
+  get created_byObs(): BehaviorSubject<string> {
+    return this._created_byObs;
+  }
+
   private _modified_at: Date;
+
+  get modified_at(): Date {
+    return this._modified_at;
+  }
+
+  set modified_at(value: Date) {
+    this._modified_atObs.next(value);
+    this._modified_at = value;
+  }
+
   private _modified_atObs: BehaviorSubject<Date> = new BehaviorSubject<Date>(null);
+
+  get modified_atObs(): BehaviorSubject<Date> {
+    return this._modified_atObs;
+  }
+
   private _modified_by: string;
+
+  get modified_by(): string {
+    return this._modified_by;
+  }
+
+  set modified_by(value: string) {
+    this._modified_byObs.next(value);
+    this._modified_by = value;
+  }
+
   private _modified_byObs: BehaviorSubject<string> = new BehaviorSubject<string>(null);
+
+  get modified_byObs(): BehaviorSubject<string> {
+    return this._modified_byObs;
+  }
+
   private _archived_at: Date;
+
+  get archived_at(): Date {
+    return this._archived_at;
+  }
+
+  set archived_at(value: Date) {
+    this._archived_atObs.next(value);
+    this._archived_at = value;
+  }
+
   private _archived_atObs: BehaviorSubject<Date> = new BehaviorSubject<Date>(null);
+
+  get archived_atObs(): BehaviorSubject<Date> {
+    return this._archived_atObs;
+  }
+
   private _archived_by: string;
+
+  get archived_by(): string {
+    return this._archived_by;
+  }
+
+  set archived_by(value: string) {
+    this._archived_byObs.next(value);
+    this._archived_by = value;
+  }
+
   private _archived_byObs: BehaviorSubject<string> = new BehaviorSubject<string>(null);
+
+  get archived_byObs(): BehaviorSubject<string> {
+    return this._archived_byObs;
+  }
+
   private _url: string;
+
+  get url(): string {
+    return this._url;
+  }
+
+  set url(value: string) {
+    this._urlObs.next(value);
+    this._url = value;
+  }
+
   private _urlObs: BehaviorSubject<string> = new BehaviorSubject<string>(null);
+
+  get urlObs(): BehaviorSubject<string> {
+    return this._urlObs;
+  }
 
   public fill(user) {
     if (!user) {
@@ -453,202 +679,5 @@ export class UserDataService {
       }
     }
     this.address = address;
-  }
-
-  get department(): { id: string; name: string } {
-    return this._department;
-  }
-
-  set department(value: { id: string; name: string }) {
-    this._departmentObs.next(value);
-    this._department = value;
-  }
-
-  get url(): string {
-    return this._url;
-  }
-
-  set url(value: string) {
-    this._urlObs.next(value);
-    this._url = value;
-  }
-
-  get position(): { id: string; name_de: string; name_en: string; name_fr: string; name_it: string } {
-    return this._position;
-  }
-
-  set position(value: { id: string; name_de: string; name_en: string; name_fr: string; name_it: string }) {
-    this._positionObs.next(value);
-    this._position = value;
-  }
-
-  get language(): { full_name: string; abbreviation: string } {
-    return this._language;
-  }
-
-  set language(value: { full_name: string; abbreviation: string }) {
-    this._languageObs.next(value);
-    this._language = value;
-  }
-
-  get gender(): { id: string; name_de: string; name_en: string; name_fr: string; name_it: string } {
-    return this._gender;
-  }
-
-  set gender(value: { id: string; name_de: string; name_en: string; name_fr: string; name_it: string }) {
-    this._genderObs.next(value);
-    this._gender = value;
-  }
-
-  get archived_by(): string {
-    return this._archived_by;
-  }
-
-  set archived_by(value: string) {
-    this._archived_byObs.next(value);
-    this._archived_by = value;
-  }
-
-  get archived_at(): Date {
-    return this._archived_at;
-  }
-
-  set archived_at(value: Date) {
-    this._archived_atObs.next(value);
-    this._archived_at = value;
-  }
-
-  get modified_by(): string {
-    return this._modified_by;
-  }
-
-  set modified_by(value: string) {
-    this._modified_byObs.next(value);
-    this._modified_by = value;
-  }
-
-  get modified_at(): Date {
-    return this._modified_at;
-  }
-
-  set modified_at(value: Date) {
-    this._modified_atObs.next(value);
-    this._modified_at = value;
-  }
-
-  get created_by(): string {
-    return this._created_by;
-  }
-
-  set created_by(value: string) {
-    this._created_byObs.next(value);
-    this._created_by = value;
-  }
-
-  get created_at(): Date {
-    return this._created_at;
-  }
-
-  set created_at(value: Date) {
-    this._created_atObs.next(value);
-    this._created_at = value;
-  }
-
-  get signup_completed(): boolean {
-    return this._signup_completed;
-  }
-
-  set signup_completed(value: boolean) {
-    this._signup_completedObs.next(value);
-    this._signup_completed = value;
-  }
-
-  get birthdate(): Date {
-    return this._birthdate;
-  }
-
-  set birthdate(value: Date) {
-    this._birthdateObs.next(value);
-    this._birthdate = value;
-  }
-
-  get js_certificate(): boolean {
-    return this._js_certificate;
-  }
-
-  set js_certificate(value: boolean) {
-    this._js_certificateObs.next(value);
-    this._js_certificate = value;
-  }
-
-  get js_certificate_until(): number {
-    return this._js_certificate_until;
-  }
-
-  set js_certificate_until(value: number) {
-    this._js_certificate_untilObs.next(value);
-    this._js_certificate_until = value;
-  }
-
-  get address(): { city: { id: string; name_de: string; name_en: string; name_fr: string; name_it: string }; street: string } {
-    return this._address;
-  }
-
-  set address(value: { city: { id: string; name_de: string; name_en: string; name_fr: string; name_it: string }; street: string }) {
-    this._addressObs.next(value);
-    this._address = value;
-  }
-
-  get username(): string {
-    return this._username;
-  }
-
-  set username(value: string) {
-    this._usernameObs.next(value);
-    this._username = value;
-  }
-
-  get email(): string {
-    return this._email;
-  }
-
-  set email(value: string) {
-    this._emailObs.next(value);
-    this._email = value;
-  }
-
-  get cevi_name(): string {
-    return this._cevi_name;
-  }
-
-  set cevi_name(value: string) {
-    this._cevi_nameObs.next(value);
-    this._cevi_name = value;
-  }
-
-  get last_name(): string {
-    return this._last_name;
-  }
-
-  set last_name(value: string) {
-    this._last_nameObs.next(value);
-    this._last_name = value;
-  }
-
-  get first_name(): string {
-    return this._first_name;
-  }
-
-  set first_name(value: string) {
-    this._first_nameObs.next(value);
-    this._first_name = value;
-  }
-
-  get id(): string {
-    return this._id;
-  }
-
-  set id(value: string) {
-    this._id = value;
   }
 }

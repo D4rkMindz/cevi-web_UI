@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {LocalStorageService} from '../../shared/services/storage/local-storage.service';
-import {Router} from '@angular/router';
-import {UserDataService} from '../../shared/services/user/user-data.service';
-import {CredentialsService} from '../../shared/services/authentication/credentials.service';
+import { Component, OnInit } from '@angular/core';
+import { LocalStorageService } from '../../shared/services/storage/local-storage.service';
+import { Router } from '@angular/router';
+import { UserDataService } from '../../shared/services/user/user-data.service';
+import { CredentialsService } from '../../shared/services/authentication/credentials.service';
 
 @Component({
   selector: 'cevi-web-logout',

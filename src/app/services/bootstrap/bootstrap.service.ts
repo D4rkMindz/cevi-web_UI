@@ -3,7 +3,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { config } from '../../config/config';
 import { LocalStorageService } from '../../modules/shared/services/storage/local-storage.service';
 import { CredentialsService } from '../../modules/shared/services/authentication/credentials.service';
-import { toDate } from '../../functions/to-date';
 import { UserDataService } from '../../modules/shared/services/user/user-data.service';
 
 @Injectable()

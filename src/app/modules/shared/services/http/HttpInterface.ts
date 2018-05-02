@@ -1,4 +1,4 @@
-import {HttpParams} from '@angular/common/http';
+import { HttpParams } from '@angular/common/http';
 
 export interface HttpServiceInterface {
   get(url: string, params?: HttpParams);

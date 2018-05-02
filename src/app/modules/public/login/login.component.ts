@@ -1,17 +1,17 @@
-import {Component} from '@angular/core';
-import {ActivatedRoute, ActivatedRouteSnapshot, Router} from '@angular/router';
-import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
-import {ErrorStateMatcher} from '@angular/material';
-import {AuthService} from '../../shared/services/authentication/auth.service';
-import {HttpErrorResponse} from '@angular/common/http';
-import {SnackbarService} from '../../shared/services/snackbar/snackbar.service';
-import {__} from '../../../functions/translation';
-import {config} from '../../../config/config';
-import {_} from '@biesbjerg/ngx-translate-extract/dist/utils/utils';
-import {CredentialsService} from '../../shared/services/authentication/credentials.service';
-import {UserDataService} from '../../shared/services/user/user-data.service';
-import {LocalStorageService} from '../../shared/services/storage/local-storage.service';
-import {SecureHttpService} from '../../shared/services/http/secure-http.service';
+import { Component } from '@angular/core';
+import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
+import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material';
+import { AuthService } from '../../shared/services/authentication/auth.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { SnackbarService } from '../../shared/services/snackbar/snackbar.service';
+import { __ } from '../../../functions/translation';
+import { config } from '../../../config/config';
+import { _ } from '@biesbjerg/ngx-translate-extract/dist/utils/utils';
+import { CredentialsService } from '../../shared/services/authentication/credentials.service';
+import { UserDataService } from '../../shared/services/user/user-data.service';
+import { LocalStorageService } from '../../shared/services/storage/local-storage.service';
+import { SecureHttpService } from '../../shared/services/http/secure-http.service';
 
 
 export class LoginFormErrorStateMatcher implements ErrorStateMatcher {
@@ -59,23 +59,6 @@ export class LoginComponent {
   }
 
   /**
-   * Load form components
-   */
-  private loadFormComponents() {
-    this.username = new FormControl('', [Validators.required]);
-    this.password = new FormControl('', [Validators.required]);
-    this.staySignedIn = new FormControl();
-
-    this.loginFormControl = new FormGroup({
-      username: this.username,
-      password: this.password,
-      staySignedIn: this.staySignedIn,
-    });
-
-    this.matcher = new LoginFormErrorStateMatcher();
-  }
-
-  /**
    * Sign user in
    * @return {Promise<void>}
    */
@@ -119,6 +102,23 @@ export class LoginComponent {
         this.router.navigate(['home']);
       }
     }
+  }
+
+  /**
+   * Load form components
+   */
+  private loadFormComponents() {
+    this.username = new FormControl('', [Validators.required]);
+    this.password = new FormControl('', [Validators.required]);
+    this.staySignedIn = new FormControl();
+
+    this.loginFormControl = new FormGroup({
+      username: this.username,
+      password: this.password,
+      staySignedIn: this.staySignedIn,
+    });
+
+    this.matcher = new LoginFormErrorStateMatcher();
   }
 
   /**
