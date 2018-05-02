@@ -7,6 +7,7 @@ import { PublicComponent } from './public/public.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { SharedModule } from '../shared/shared.module';
+import { RegistrationComponent } from './registration/registration.component';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { SharedModule } from '../shared/shared.module';
     LoginComponent,
     LogoutComponent,
     PublicComponent,
+    RegistrationComponent,
   ]
 })
 export class PublicModule {
