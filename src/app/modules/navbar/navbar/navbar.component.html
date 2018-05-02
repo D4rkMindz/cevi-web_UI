@@ -1,0 +1,70 @@
+<div class="container" [class.is-mobile]="mobileQuery.matches">
+  <mat-toolbar class="toolbar" color="primary">
+    <mat-toolbar-row>
+      <span>
+        <button mat-icon-button (click)="toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <h1 class="app-name">{{appName.replace('-', ' ')}}</h1>
+      </span>
+
+      <span class="fill-remaining-space"></span>
+
+      <span>
+
+        <button mat-icon-button [matMenuTriggerFor]="account" matTooltip="{{'Account'| translate}}">
+          <mat-icon>account_circle</mat-icon>
+        </button>
+
+        <mat-menu #account="matMenu" class="account-menu">
+
+          <span class="account-menu-info">
+            <h3>{{(user.cevi_nameObs | async)||(credentials.getUsernameAsObservable()| async)}}</h3>
+            <p *ngIf="credentials.email">{{credentials.email}}</p>
+          </span>
+          <span class="account-menu-navigation">
+          <button mat-menu-item [routerLink]="['/user/profile']"><mat-icon>account_circle</mat-icon> {{'Your Account' | translate}}</button>
+          <button mat-menu-item [routerLink]="['/home/settings']"><mat-icon>settings</mat-icon> {{'Settings' | translate}}</button>
+          <button mat-menu-item [routerLink]="['/logout']"><mat-icon>exit_to_app</mat-icon> {{'Log out' | translate}}</button>
+          <mat-divider></mat-divider>
+          <button mat-menu-item [matMenuTriggerFor]="languages">
+            {{'Language' | translate}}: {{readableLanguage | async}}
+          </button>
+          </span>
+
+        </mat-menu>
+
+        <mat-menu #languages="matMenu">
+          <span class="account-menu-navigation">
+          <button mat-menu-item (click)="changeLanguageTo('de')">Deutsch</button>
+          <button mat-menu-item (click)="changeLanguageTo('en')">English</button>
+          <button mat-menu-item (click)="changeLanguageTo('fr')">Français</button>
+          <button mat-menu-item (click)="changeLanguageTo('it')">Italiano</button>
+          </span>
+        </mat-menu>
+
+      </span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-sidenav-container class="sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <mat-sidenav #sidenav class="sidenav"
+                 (keydown.escape)="close()"
+                 [mode]="mobileQuery.matches ? 'over' : 'side'"
+                 [fixedInViewport]="mobileQuery.matches"
+                 [fixedTopGap]="56"
+                 [opened]="!mobileQuery.matches">
+      <mat-nav-list>
+        <a mat-list-item routerLink="/home">{{'Home'|translate}}</a>
+        <a mat-list-item routerLink="/home/overview">{{'Dashboard'|translate}}</a>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="content">
+      <ng-progress></ng-progress>
+      <ng-content></ng-content>
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
+</div>
+
+

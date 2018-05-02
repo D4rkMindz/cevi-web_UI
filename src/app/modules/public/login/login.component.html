@@ -1,0 +1,54 @@
+<div class="container">
+
+  <div fxShow fxFlex="33" fxFlex.sm="20" fxHide.xs fxLayout="column">&nbsp;</div>
+  <div fxShow fxFlex="33" fxFlex.sm="60" fxFlex.xs="100%" fxLayout="column">
+    <mat-card class="card">
+      <mat-card-title>{{'Login'|translate}}</mat-card-title>
+      <mat-card-subtitle>{{'Login with your CEVI Web Account'|translate}}</mat-card-subtitle>
+
+      <mat-card-content>
+        <div class="form">
+          <form>
+
+            <div fxLayout="row">
+              <mat-form-field>
+                <input matInput
+                       placeholder="{{'Username or Email' | translate}}"
+                       [formControl]="loginFormControl.controls.username"
+                       [errorStateMatcher]="matcher">
+                <mat-error *ngIf="loginFormControl.controls.username.hasError('required')">{{'Required'|translate}}</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div fxLayout="row">
+              <mat-form-field>
+                <input matInput
+                       type="password"
+                       placeholder="{{'Password' | translate}}"
+                       [formControl]="password"
+                       [errorStateMatcher]="matcher">
+                <mat-error *ngIf="loginFormControl.controls.password.hasError('required')">{{'Required'|translate}}</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div fxLayout="row" class="form-finish">
+
+              <div fxFlex="50" fxFlexAlign="center">
+                <mat-checkbox [formControl]="staySignedIn" [ngModel]="isChecked" fxFlexAlign="start" color="primary" name="staySignedIn">{{'Stay logged in'|translate}}</mat-checkbox>
+              </div>
+
+              <div fxFlex="50" fxFlexAlign="center">
+                <button (click)="signIn()" fxFlexAlign="end" mat-raised-button color="primary">{{'Login'|translate}}</button>
+              </div>
+
+            </div>
+
+          </form>
+        </div>
+
+      </mat-card-content>
+    </mat-card>
+
+  </div>
+  <div fxShow fxFlex="33" fxFlex.sm="20" fxHide.xs fxLayout="column">&nbsp;</div>
+</div>

@@ -1,0 +1,46 @@
+
+.is-mobile .toolbar {
+  position: fixed;
+  /* Make sure the toolbar will stay on top of the content as it scrolls past. */
+  z-index: 2;
+}
+
+h1.app-name {
+  display: inline-block;
+  margin-left: 8px;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.content {
+  padding-left: 15px;
+}
+
+.sidenav-container {
+  flex: 1;
+}
+
+.is-mobile .sidenav-container {
+  flex: 1 0 auto;
+}
+
+.fill-remaining-space {
+  flex: 1 1 auto;
+}
+
+.account-menu-info > *{
+  padding-top: inherit;
+  padding-right: 15px;
+  padding-left: 15px;
+  padding-bottom: inherit;
+}
+
+.account-menu-info > p {
+  font-size: 0.7em;
+}
+
+.account-menu-navigation > *{
+  font-size: 0.95em;
+}

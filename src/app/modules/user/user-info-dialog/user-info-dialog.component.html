@@ -1,0 +1,66 @@
+<form [formGroup]="form" (ngSubmit)="submit(form)">
+  <h1 mat-dialog-title>Add file</h1>
+  <mat-dialog-content fxLayout="column">
+    <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="1em" fxLayoutGap.lt-sm="0">
+
+      <mat-form-field fxFlex="50%" fxFlex.lt-sm="100%">
+        <input matInput formControlName="username" placeholder="{{'Username'|translate}}">
+        <mat-error *ngIf="form.controls['username'].hasError('specific')">
+          {{form.controls['username'].getError('specific')}}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="50%" fxFlex.lt-sm="100%">
+        <input matInput formControlName="cevi_name" placeholder="{{'CEVI name'|translate}}">
+        <mat-error *ngIf="form.controls['cevi_name'].hasError('specific')">
+          {{form.controls['cevi_name'].getError('specific')}}
+        </mat-error>
+      </mat-form-field>
+
+    </div>
+
+    <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="1em" fxLayoutGap.lt-sm="0">
+
+      <mat-form-field fxFlex="50%" fxFlex.lt-sm="100%">
+        <input matInput formControlName="first_name" placeholder="{{'First name'|translate}}">
+        <mat-error *ngIf="form.controls['first_name'].hasError('specific')">
+          {{form.controls['first_name'].getError('specific')}}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="50%" fxFlex.lt-sm="100%">
+        <input matInput formControlName="last_name" placeholder="{{'Last name'|translate}}">
+        <mat-error *ngIf="form.controls['first_name'].hasError('specific')">
+          {{form.controls['last_name'].getError('specific')}}
+        </mat-error>
+      </mat-form-field>
+
+    </div>
+
+    <div fxLayout="row" fxLayout.lt-sm="column">
+
+      <mat-form-field fxFlex="35%" fxFlex.lt-sm="100%">
+        <mat-select [(value)]="selectedGender" placeholder="{{'Gender'|translate}}">
+          <mat-option *ngFor="let gender of genders" [value]="gender.id">
+            {{ gender.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </div>
+
+  </mat-dialog-content>
+  <mat-dialog-actions>
+
+    <div fxLayout="row" fxFlex="100">
+      <div fxFlex="40" fxFlexOffset="60" fxFlex.gt-md="25" fxFlexOffset.gt-md="75" fxFlex.lt-sm="100" fxFlexOffset.lt-sm="0">
+        <button mat-raised-button type="submit" color="primary" fxFlex="50">
+          {{'Confirm'|translate}}
+        </button>
+        <button mat-raised-button mat-dialog-close type="button" color="warn" fxFlex="50">
+          {{'Cancel'|translate}}
+        </button>
+      </div>
+    </div>
+  </mat-dialog-actions>
+</form>

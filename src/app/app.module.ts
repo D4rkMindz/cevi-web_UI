@@ -1,20 +1,101 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+///<reference path="../../node_modules/@ngx-progressbar/http/ng-progress-http.module.d.ts"/>
+import {BrowserModule} from '@angular/platform-browser';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
+import {AppRoutingModule} from './app-routing.module';
 
-import { AppComponent } from './app.component';
+import {AppComponent} from './app.component';
+import {BootstrapService} from './services/bootstrap/bootstrap.service';
+import {NgForageConfig} from 'ngforage';
+import {config} from './config/config';
+import {AuthGuard} from './guards/auth.guard';
+import {SharedModule} from './modules/shared/shared.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {HttpClient} from '@angular/common/http';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: translateLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
+    SharedModule.forRoot(),
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    AuthGuard,
+    BootstrapService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: queryParamReaderFactory,
+      deps: [BootstrapService],
+      multi: true, // run many at the time
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: userCredentialLoaderFactory,
+      deps: [BootstrapService],
+      multi: true, // run many at the time
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: userDataLoaderFactory,
+      deps: [BootstrapService],
+      multi: true, // run many at the time
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {
+  constructor(private ngForageConfig: NgForageConfig) {
+    this.ngForageConfig.configure({
+      name: config.appName,
+      driver: [
+        NgForageConfig.DRIVER_INDEXEDDB,
+        NgForageConfig.DRIVER_LOCALSTORAGE,
+      ],
+    });
+  }
+}
+
+/**
+ * Translation String HTTP loader factory
+ * @param {HttpClient} http
+ * @return {TranslateHttpLoader}
+ */
+export function translateLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, 'assets/locale/', '.json');
+}
+
+/**
+ * Get query param reader factory
+ * @param {BootstrapService} bootstrap
+ * @return {() => undefined}
+ */
+export function queryParamReaderFactory(bootstrap: BootstrapService) {
+  return () => bootstrap.readLanguageQueryParam();
+}
+
+/**
+ * User credential loader factory to load them from the local storage
+ * @param {BootstrapService} bootstrap
+ * @return {() => Promise<undefined>}
+ */
+export function userCredentialLoaderFactory(bootstrap: BootstrapService) {
+  return () => bootstrap.getUserCredentialsFromStorage();
+}
+
+export function userDataLoaderFactory(bootstrap: BootstrapService) {
+  return () => bootstrap.getUserFromStorage();
+}
