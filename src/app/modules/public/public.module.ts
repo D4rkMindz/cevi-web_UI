@@ -8,6 +8,8 @@ import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { SharedModule } from '../shared/shared.module';
 import { RegistrationComponent } from './registration/registration.component';
+import { GeneralInformationFormComponent } from './registration/general-information-form/general-information-form.component';
+import { VerifyComponent } from './registration/verify/verify.component';
 
 @NgModule({
   imports: [
@@ -21,6 +23,8 @@ import { RegistrationComponent } from './registration/registration.component';
     LogoutComponent,
     PublicComponent,
     RegistrationComponent,
+    GeneralInformationFormComponent,
+    VerifyComponent,
   ]
 })
 export class PublicModule {

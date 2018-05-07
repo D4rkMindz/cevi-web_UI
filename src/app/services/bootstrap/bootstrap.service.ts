@@ -4,6 +4,7 @@ import { config } from '../../config/config';
 import { LocalStorageService } from '../../modules/shared/services/storage/local-storage.service';
 import { CredentialsService } from '../../modules/shared/services/authentication/credentials.service';
 import { UserDataService } from '../../modules/shared/services/user/user-data.service';
+import { SecureHttpService } from '../../modules/shared/services/http/secure-http.service';
 
 @Injectable()
 export class BootstrapService {
@@ -13,11 +14,13 @@ export class BootstrapService {
    * @param {TranslateService} translate
    * @param {LocalStorageService} localStorage
    * @param {CredentialsService} credentials
+   * @param https
    * @param user
    */
   constructor(private translate: TranslateService,
               private localStorage: LocalStorageService,
               private credentials: CredentialsService,
+              private https: SecureHttpService,
               private user: UserDataService) {
   }
 
@@ -100,6 +103,12 @@ export class BootstrapService {
    */
   public async getUserFromStorage() {
     const user = <any>await this.localStorage.getItem(config.keys.user);
+    if (!user) {
+      console.log(user);
+      console.log('user is not');
+      // const url = config.defaults.url.base + config.defaults.url.apiVersion + '/users/';
+      // user = this.https.get(url);
+    }
     this.user.fill(user);
   }
 }

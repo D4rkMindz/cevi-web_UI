@@ -1,0 +1,175 @@
+<mat-card fxLayout="column" fxFlex="50" fxFlexOffset="25" fxFlex.lt-md="100" fxFlexOffset.lt-md="0">
+  <mat-card-title>
+    <h3>{{'Name' | translate}}</h3>
+  </mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="generalInformationForm">
+      <div fxLayout="row" fxLayout.lt-md="column">
+        <div fxFlex="50" fxFlex.lt-md="100">
+          <mat-form-field fxFlex="95" fxFlex.lt-md="100">
+            <input matInput
+                   placeholder="{{'First name' | translate}}"
+                   formControlName="first_name"
+                   required>
+            <mat-error *ngIf="generalInformationForm.controls['first_name'].hasError('specific')">
+              {{generalInformationForm.controls['first_name'].getError('specific')}}
+            </mat-error>
+            <mat-error *ngIf="generalInformationForm.controls['first_name'].hasError('required')">
+              {{'Required'|translate}}
+            </mat-error>
+            <mat-error *ngIf="generalInformationForm.controls['first_name'].hasError('minlength')">
+              {{'Minimum 2 Characters' | translate}}
+            </mat-error>
+            <mat-error *ngIf="generalInformationForm.controls['first_name'].hasError('maxlength')">
+              {{'Maximum 255 Characters' | translate}}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div fxFlex="50" fxFlex.lt-md="100">
+          <mat-form-field fxFlex="95" fxFlex.lt-md="100">
+            <input matInput
+                   fxFlex="100"
+                   placeholder="{{'Last name' | translate}}"
+                   formControlName="last_name">
+            <mat-error *ngIf="generalInformationForm.controls['last_name'].hasError('specific')">
+              {{generalInformationForm.controls['last_name'].getError('specific')}}
+            </mat-error>
+            <mat-error *ngIf="generalInformationForm.controls['last_name'].hasError('minlength')">
+              {{'Minimum 2 Characters' | translate}}
+            </mat-error>
+            <mat-error *ngIf="generalInformationForm.controls['last_name'].hasError('maxlength')">
+              {{'Maximum 255 Characters' | translate}}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayout.lt-md="column">
+        <div fxFlex="100">
+          <mat-form-field fxFlex="95" fxFlex.lt-md="100">
+            <input matInput
+                   fxFlex="100"
+                   placeholder="{{'CEVI Name (if you have one)' | translate}}"
+                   formControlName="cevi_name">
+            <mat-error *ngIf="generalInformationForm.controls['cevi_name'].hasError('specific')">
+              {{generalInformationForm.controls['cevi_name'].getError('specific')}}
+            </mat-error>
+            <mat-error *ngIf="generalInformationForm.controls['cevi_name'].hasError('minlength')">
+              {{'Minimum 2 Characters' | translate}}
+            </mat-error>
+            <mat-error *ngIf="generalInformationForm.controls['cevi_name'].hasError('maxlength')">
+              {{'Maximum 255 Characters' | translate}}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <h3>{{'Credentials' | translate}}</h3>
+      <div fxLayout="row" fxLayout.lt-md="column">
+        <div fxFlex="100">
+          <mat-form-field fxFlex="95" fxFlex.lt-md="100">
+            <input matInput
+                   type="email"
+                   email
+                   placeholder="{{'Email' | translate}}"
+                   formControlName="email"
+                   required>
+            <mat-error *ngIf="generalInformationForm.controls['email'].hasError('specific')">
+              {{generalInformationForm.controls['email'].getError('specific')}}
+            </mat-error>
+            <mat-error *ngIf="generalInformationForm.controls['email'].hasError('required')">
+              {{'Required'|translate}}
+            </mat-error>
+            <mat-error *ngIf="generalInformationForm.controls['email'].hasError('minlength')">
+              {{'Minimum 2 Characters' | translate}}
+            </mat-error>
+            <mat-error *ngIf="generalInformationForm.controls['email'].hasError('maxlength')">
+              {{'Maximum 255 Characters' | translate}}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayout.lt-md="column">
+        <div fxFlex="50" fxFlex.lt-md="100">
+          <mat-form-field fxFlex="95" fxFlex.lt-md="100">
+            <input matInput
+                   placeholder="{{'Username' | translate}}"
+                   formControlName="username"
+                   required>
+            <mat-error *ngIf="generalInformationForm.controls['username'].hasError('specific')">
+              {{generalInformationForm.controls['username'].getError('specific')}}
+            </mat-error>
+            <mat-error *ngIf="generalInformationForm.controls['username'].hasError('required')">
+              {{'Required'|translate}}
+            </mat-error>
+            <mat-error *ngIf="generalInformationForm.controls['username'].hasError('minlength')">
+              {{'Minimum 2 Characters' | translate}}
+            </mat-error>
+            <mat-error *ngIf="generalInformationForm.controls['username'].hasError('maxlength')">
+              {{'Maximum 255 Characters' | translate}}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div fxFlex="50" fxFlex.lt-md="100">
+          <mat-form-field fxFlex="95" fxFlex.lt-md="100">
+            <input type="password"
+                   matInput
+                   placeholder="{{'Password' | translate}}"
+                   formControlName="password"
+                   required>
+            <mat-error *ngIf="generalInformationForm.controls['password'].hasError('specific')">
+              {{generalInformationForm.controls['password'].getError('specific')}}
+            </mat-error>
+            <mat-error *ngIf="generalInformationForm.controls['password'].hasError('required')">
+              {{'Required'|translate}}
+            </mat-error>
+            <mat-error *ngIf="generalInformationForm.controls['password'].hasError('minlength')">
+              {{'Minimum 8 Characters' | translate}}
+            </mat-error>
+            <mat-error *ngIf="generalInformationForm.controls['password'].hasError('maxlength')">
+              {{'Maximum 255 Characters' | translate}}
+            </mat-error>
+            <mat-error *ngIf="generalInformationForm.controls['password'].hasError('pattern')">
+              {{'Please include an uppercase, a lowercase and a digit character' | translate}}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <h3>{{'Address' | translate}}</h3>
+      <div fxLayout="row" fxLayout.lt-md="column">
+        <div fxFlex="35" fxFlex.lt-md="100">
+          <mat-form-field fxFlex="95" fxFlex.lt-md="100">
+            <input type="number"
+                   placeholder="{{'ZIP' | translate}}"
+                   aria-label="Number"
+                   formControlName="postcode"
+                   matInput
+                   required
+                   [matAutocomplete]="cityAutoComplete">
+            <mat-autocomplete #cityAutoComplete="matAutocomplete" [displayWith]="displayFn"
+                              (optionSelected)="setCity($event.option.value)">
+              <mat-option *ngFor="let city of filteredCities | async" [value]="city">
+                {{ city.zip + ' ' + city.name }}
+              </mat-option>
+            </mat-autocomplete>
+            <mat-error *ngIf="generalInformationForm.controls['postcode'].hasError('specific')">
+              {{generalInformationForm.controls['postcode'].getError('specific')}}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div fxFlex="65" fxFlex.lt-md="100">
+          <mat-form-field fxFlex="95" fxFlex.lt-md="100">
+            <input type="text"
+                   matInput
+                   placeholder="{{'City' | translate}}"
+                   formControlName="city"
+                   required>
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="end">
+        <button mat-raised-button color="primary" (click)="continue()">{{'Next' | translate}}</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

@@ -45,11 +45,16 @@
                 <button (click)="signIn()" fxFlexAlign="end" mat-raised-button color="primary">{{'Login'|translate}}
                 </button>
               </div>
-
             </div>
 
           </form>
         </div>
+
+        <div class="divider">
+          <mat-divider></mat-divider>
+        </div>
+
+        <a routerLink="/registration">{{'Don\'t have an account?'|translate}}</a>
 
       </mat-card-content>
     </mat-card>

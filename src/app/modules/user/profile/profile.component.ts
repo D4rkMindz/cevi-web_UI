@@ -61,7 +61,12 @@ export class ProfileComponent {
     const gender = this.user.gender['name_' + this.lang];
     this.gender.next(gender);
     this.user.genderObs.subscribe(gend => {
-      const val = gend['name_' + this.lang];
+      const key = 'name_' + this.lang;
+      let val = null;
+      if (key in gend) {
+        val = gend[key];
+      }
+
       this.gender.next(val);
     });
   }

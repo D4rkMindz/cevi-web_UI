@@ -1,3 +1,16 @@
-<p>
-  registration works!
-</p>
+<mat-horizontal-stepper [linear]="true" #stepper="matHorizontalStepper">
+  <mat-step [stepControl]="generalInformationForm">
+    <ng-template matStepLabel>{{'General information' | translate}}</ng-template>
+    <cevi-web-general-information-form
+      [generalInformationForm]="generalInformationForm"
+      [stepper]="stepper">
+    </cevi-web-general-information-form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>{{'Confirm your Email'|translate}}</ng-template>
+    {{'Please confirm your email. If you did not get one, have quick look in your span folder'|translate}}
+    <div>
+      <button mat-button matStepperPrevious>{{'Back'|translate}}</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>

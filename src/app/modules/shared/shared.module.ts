@@ -141,7 +141,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-  ]
+  ],
 })
 export class SharedModule {
   public static forRoot(): ModuleWithProviders {

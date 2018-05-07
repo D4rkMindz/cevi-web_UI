@@ -5,12 +5,14 @@ import { HelloComponent } from './hello/hello.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { VerifyComponent } from './registration/verify/verify.component';
 
 const PUBLIC_ROUTES: Routes = [
   {path: 'hello', component: HelloComponent},
   {path: 'login', component: LoginComponent},
   {path: 'logout', component: LogoutComponent},
   {path: 'registration', component: RegistrationComponent},
+  {path: 'registration/verify/:hash', component: VerifyComponent},
 ];
 
 const routes: Routes = [

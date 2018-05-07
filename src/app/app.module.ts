@@ -1,4 +1,3 @@
-///<reference path="../../node_modules/@ngx-progressbar/http/ng-progress-http.module.d.ts"/>
 import { BrowserModule } from '@angular/platform-browser';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 
@@ -15,6 +14,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
+// Todo check why the fuck there is a cyclic dependency ?! continue here
 
 @NgModule({
   declarations: [
