@@ -8,9 +8,9 @@
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>{{'Confirm your Email'|translate}}</ng-template>
-    {{'Please confirm your email. If you did not get one, have quick look in your span folder'|translate}}
+    {{'Please confirm your email. If you did not get one, have quick look in your Spam folder'|translate}}
     <div>
-      <button mat-button matStepperPrevious>{{'Back'|translate}}</button>
+      <button mat-button (click)="login()">{{'Login'|translate}}</button>
     </div>
   </mat-step>
 </mat-horizontal-stepper>

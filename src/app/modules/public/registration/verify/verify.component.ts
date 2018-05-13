@@ -27,6 +27,7 @@ export class VerifyComponent implements OnInit {
     console.log(response);
     if ('verified' in response && response.verified) {
       const successkey = <string>_('Verified email successfully');
+      // TODO load user data new if email is verified (or update email verified value in indexeddb) continue here
       this.snackbar.success(await __(successkey));
       this.router.navigate(['/home']);
     } else {

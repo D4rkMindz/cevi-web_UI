@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { config } from '../../config/config';
 import { LocalStorageService } from '../../modules/shared/services/storage/local-storage.service';
 import { CredentialsService } from '../../modules/shared/services/authentication/credentials.service';
 import { UserDataService } from '../../modules/shared/services/user/user-data.service';
+import { injector } from '../injector';
 import { SecureHttpService } from '../../modules/shared/services/http/secure-http.service';
 
 @Injectable()
@@ -14,14 +15,23 @@ export class BootstrapService {
    * @param {TranslateService} translate
    * @param {LocalStorageService} localStorage
    * @param {CredentialsService} credentials
-   * @param https
+   * @param injectr
    * @param user
    */
   constructor(private translate: TranslateService,
               private localStorage: LocalStorageService,
               private credentials: CredentialsService,
-              private https: SecureHttpService,
+              private injectr: Injector,
               private user: UserDataService) {
+    injector(this.injectr);
+  }
+
+  /**
+   * Get Secure HTTP Service
+   * @return {SecureHttpService}
+   */
+  get https(): SecureHttpService {
+    return this.injectr.get(SecureHttpService);
   }
 
   /**
@@ -61,7 +71,7 @@ export class BootstrapService {
    * Load user credentials from local storage
    * @return {Promise<void>}
    */
-  public async getUserCredentialsFromStorage() {
+  public async loadDataFromStorage() {
     const credentials = <any>await this.localStorage.getItem(config.keys.credentials);
 
     if (!credentials) {
@@ -95,6 +105,15 @@ export class BootstrapService {
     if (!!credentials._userId) {
       this.credentials.userId = credentials._userId;
     }
+
+    await this.getUserFromStorage();
+
+    if (!this.user.id && this.credentials.hasCredentials()) {
+      const url = config.defaults.url.base + config.defaults.url.apiVersion + '/users/' + this.credentials.userId;
+      const response = <any> await this.https.get(url);
+      this.user.fill(response.user);
+    }
+    console.log('nothing to load');
   }
 
   /**
@@ -103,12 +122,8 @@ export class BootstrapService {
    */
   public async getUserFromStorage() {
     const user = <any>await this.localStorage.getItem(config.keys.user);
-    if (!user) {
-      console.log(user);
-      console.log('user is not');
-      // const url = config.defaults.url.base + config.defaults.url.apiVersion + '/users/';
-      // user = this.https.get(url);
+    if (user) {
+      this.user.fill(user);
     }
-    this.user.fill(user);
   }
 }

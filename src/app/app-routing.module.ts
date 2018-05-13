@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
+import { config } from './config/config';
 
 const routes: Routes = [
   {
@@ -25,11 +26,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {enableTracing: config.defaults.routeTracing})],
   exports: [RouterModule]
 })
 export class AppRoutingModule {
-  constructor() {
-    console.log('AppRouting');
-  }
 }

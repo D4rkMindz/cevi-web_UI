@@ -22,7 +22,7 @@ export const config = {
         long: 10000,
       }
     },
-    routeTracing: true,
+    routeTracing: false,
   },
   keys: {
     credentials: 'credentials',

@@ -6,6 +6,7 @@ import { HttpServiceInterface } from './HttpInterface';
 import { __ } from '../../../../functions/translation';
 import { _ } from '@biesbjerg/ngx-translate-extract/dist/utils/utils';
 import { SnackbarService } from '../snackbar/snackbar.service';
+import { config } from '../../../../config/config';
 
 @Injectable()
 export class SecureHttpService implements HttpServiceInterface {
@@ -21,7 +22,10 @@ export class SecureHttpService implements HttpServiceInterface {
    * @param snackbar
    */
   constructor(private http: HttpClient, private auth: AuthService, private translate: TranslateService, private snackbar: SnackbarService) {
-    this.lang = this.translate.currentLang.slice(0, 2);
+    this.lang = config.defaults.language.default;
+    if (this.translate.currentLang) {
+      this.lang = this.translate.currentLang.slice(0, 2);
+    }
     this.translate.onLangChange.subscribe(translations => this.lang = translations.lang.slice(0, 2));
   }
 

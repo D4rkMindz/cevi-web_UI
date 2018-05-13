@@ -14,8 +14,6 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-// Todo check why the fuck there is a cyclic dependency ?! continue here
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,13 +42,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     },
     {
       provide: APP_INITIALIZER,
-      useFactory: userCredentialLoaderFactory,
-      deps: [BootstrapService],
-      multi: true, // run many at the time
-    },
-    {
-      provide: APP_INITIALIZER,
-      useFactory: userDataLoaderFactory,
+      useFactory: dataLoaderFactory,
       deps: [BootstrapService],
       multi: true, // run many at the time
     },
@@ -92,10 +84,6 @@ export function queryParamReaderFactory(bootstrap: BootstrapService) {
  * @param {BootstrapService} bootstrap
  * @return {() => Promise<undefined>}
  */
-export function userCredentialLoaderFactory(bootstrap: BootstrapService) {
-  return () => bootstrap.getUserCredentialsFromStorage();
-}
-
-export function userDataLoaderFactory(bootstrap: BootstrapService) {
-  return () => bootstrap.getUserFromStorage();
+export function dataLoaderFactory(bootstrap: BootstrapService) {
+  return () => bootstrap.loadDataFromStorage();
 }

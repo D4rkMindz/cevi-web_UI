@@ -59,6 +59,7 @@ export class UserLoaderService {
       modified_by: this.user.modified_at,
       position: this.user.position,
       signup_completed: this.user.signup_completed,
+      email_confirmed: this.user.email_confirmed,
       url: this.user.url,
       username: this.user.username,
     };

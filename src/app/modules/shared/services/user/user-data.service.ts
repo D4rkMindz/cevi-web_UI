@@ -1,9 +1,15 @@
 import { Injectable } from '@angular/core';
 import { toDate } from '../../../../functions/to-date';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { LocalStorageService } from '../storage/local-storage.service';
+import { config } from '../../../../config/config';
 
 @Injectable()
 export class UserDataService {
+
+  constructor(private localStorage: LocalStorageService) {
+  }
+
   /**
    * Department entity
    */
@@ -461,6 +467,16 @@ export class UserDataService {
     return this._urlObs;
   }
 
+  private _email_confirmed: boolean;
+
+  get email_confirmed(): boolean {
+    return this._email_confirmed;
+  }
+
+  set email_confirmed(value: boolean) {
+    this._email_confirmed = value;
+  }
+
   public fill(user) {
     if (!user) {
       return;
@@ -473,6 +489,36 @@ export class UserDataService {
     this.extractLanguage(user);
     this.extractEssentials(user);
     this.extractPosition(user);
+    this.save();
+  }
+
+  private save() {
+    const data = {
+      address: this.address,
+      archived_at: this.archived_at,
+      archived_by: this.archived_by,
+      birthdate: this.birthdate,
+      cevi_name: this.cevi_name,
+      created_at: this.created_at,
+      created_by: this.created_by,
+      department: this.department,
+      email: this.email,
+      first_name: this.first_name,
+      gender: this.gender,
+      id: this.id,
+      js_certificate: this.js_certificate,
+      js_certificate_until: this.js_certificate_until,
+      language: this.language,
+      last_name: this.last_name,
+      modified_at: this.modified_by,
+      modified_by: this.modified_at,
+      position: this.position,
+      signup_completed: this.signup_completed,
+      email_confirmed: this.email_confirmed,
+      url: this.url,
+      username: this.username,
+    };
+    this.localStorage.setItem(config.keys.user, data);
   }
 
   public clear() {
@@ -540,6 +586,10 @@ export class UserDataService {
     }
     if ('signup_completed' in user) {
       this.signup_completed = user.signup_completed;
+    }
+
+    if ('email_confirmed' in user) {
+      this.email_confirmed = user.email_confirmed;
     }
 
     if ('url' in user) {
