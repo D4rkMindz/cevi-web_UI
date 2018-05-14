@@ -5,6 +5,7 @@ import { config } from '../../../../config/config';
 import { SnackbarService } from '../../../shared/services/snackbar/snackbar.service';
 import { _ } from '@biesbjerg/ngx-translate-extract/dist/utils/utils';
 import { __ } from '../../../../functions/translation';
+import { UserDataService } from '../../../shared/services/user/user-data.service';
 
 @Component({
   selector: 'cevi-web-verify',
@@ -13,7 +14,11 @@ import { __ } from '../../../../functions/translation';
 })
 export class VerifyComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private http: HttpService, private router: Router, private snackbar: SnackbarService) {
+  constructor(private route: ActivatedRoute,
+              private http: HttpService,
+              private router: Router,
+              private snackbar: SnackbarService,
+              private user: UserDataService) {
   }
 
   async ngOnInit() {
@@ -26,8 +31,9 @@ export class VerifyComponent implements OnInit {
     const response = <any>await this.http.post(url, data);
     console.log(response);
     if ('verified' in response && response.verified) {
+      this.user.email_confirmed = true;
+      this.user.save();
       const successkey = <string>_('Verified email successfully');
-      // TODO load user data new if email is verified (or update email verified value in indexeddb) continue here
       this.snackbar.success(await __(successkey));
       this.router.navigate(['/home']);
     } else {

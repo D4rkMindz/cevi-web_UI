@@ -492,7 +492,7 @@ export class UserDataService {
     this.save();
   }
 
-  private save() {
+  public save() {
     const data = {
       address: this.address,
       archived_at: this.archived_at,
