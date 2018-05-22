@@ -7,6 +7,7 @@ import { ArticlesComponent } from './articles/articles.component';
 import { ArticleOverviewComponent } from './article-overview/article-overview.component';
 import { NavbarModule } from '../navbar/navbar.module';
 import { ArticleTableComponent } from './article-table/article-table.component';
+import { ArticleViewComponent } from './article-view/article-view.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { ArticleTableComponent } from './article-table/article-table.component';
     NavbarModule,
     SharedModule,
   ],
-  declarations: [ArticlesComponent, ArticleOverviewComponent, ArticleTableComponent]
+  declarations: [ArticlesComponent, ArticleOverviewComponent, ArticleTableComponent, ArticleViewComponent]
 })
 export class ArticlesModule { }
