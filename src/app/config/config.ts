@@ -27,5 +27,6 @@ export const config = {
   keys: {
     credentials: 'credentials',
     user: 'user',
+    articles: 'articles',
   },
 };

@@ -7,18 +7,20 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavbarModule } from '../navbar/navbar.module';
 import { SettingsComponent } from './settings/settings.component';
 import { SharedModule } from '../shared/shared.module';
+import { FeedComponent } from './feed/feed.component';
 
 @NgModule({
   imports: [
     CommonModule,
     HomeRoutingModule,
     NavbarModule,
-    SharedModule, // AppModule,
+    SharedModule,
   ],
   declarations: [
     HomeComponent,
     DashboardComponent,
     SettingsComponent,
+    FeedComponent,
   ]
 })
 export class HomeModule {

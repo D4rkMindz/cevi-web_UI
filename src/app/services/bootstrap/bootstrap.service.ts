@@ -112,8 +112,8 @@ export class BootstrapService {
       const url = config.defaults.url.base + config.defaults.url.apiVersion + '/users/' + this.credentials.userId;
       const response = <any> await this.https.get(url);
       this.user.fill(response.user);
+      return;
     }
-    console.log('nothing to load');
   }
 
   /**

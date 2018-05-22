@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
 import { config } from './config/config';
+import { DepartmentGuard } from './guards/department.guard';
 
 const routes: Routes = [
   {
@@ -22,7 +23,12 @@ const routes: Routes = [
     path: 'home',
     loadChildren: './modules/home/home.module#HomeModule',
     canActivate: [AuthGuard],
-  }
+  },
+  {
+    path: 'articles',
+    loadChildren: './modules/articles/articles.module#ArticlesModule',
+    canActivate: [AuthGuard, DepartmentGuard],
+  },
 ];
 
 @NgModule({

@@ -147,9 +147,21 @@ export class SecureHttpService implements HttpServiceInterface {
       return e.error;
     }
 
-    const key = <string>_('Loading data failed. Please try again later. ERROR 404');
-    const message = await __(key);
-    this.snackbar.error(message);
-    return null;
+    if (e.error.code === 404) {
+      const key = <string>_('Loading data failed. Please try again later. ERROR 404');
+      let message = await __(key);
+      if (e.error.info.message) {
+        message = e.error.info.message + ' ERROR 404';
+      }
+      this.snackbar.error(message);
+      return;
+    }
+
+    const key1 = <string>_('Something went wrong. ERROR ');
+    let message1 = await __(key1);
+    message1 += e.error.code;
+    this.snackbar.error(message1);
+
+    return;
   }
 }

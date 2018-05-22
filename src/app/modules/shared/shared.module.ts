@@ -51,9 +51,12 @@ import {
   MatTooltipModule
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ArticleDataService } from './services/article/article-data.service';
+import { CdkTableModule } from '@angular/cdk/table';
 
 @NgModule({
   imports: [
+    CdkTableModule,
     CommonModule,
     HttpClientModule,
     NgForageModule.forRoot(),
@@ -101,6 +104,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatTooltipModule,
   ],
   exports: [
+    CdkTableModule,
     HttpClientModule,
     FlexLayoutModule,
     NgForageModule,
@@ -148,6 +152,7 @@ export class SharedModule {
     return {
       ngModule: SharedModule,
       providers: [
+        ArticleDataService,
         AuthService,
         CredentialsService,
         TokenAuthService,

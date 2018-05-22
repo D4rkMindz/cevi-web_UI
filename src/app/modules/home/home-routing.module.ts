@@ -3,11 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomeComponent } from './home/home.component';
 import { SettingsComponent } from './settings/settings.component';
+import { FeedComponent } from './feed/feed.component';
 
 const HOME_ROUTES: Routes = [
-  {path: '', component: DashboardComponent},
+  {path: '', component: FeedComponent},
   {path: 'settings', component: SettingsComponent},
-  {path: 'overview', component: SettingsComponent},
+  {path: 'overview', component: DashboardComponent},
 ];
 
 const routes: Routes = [

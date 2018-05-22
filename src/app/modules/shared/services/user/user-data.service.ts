@@ -522,28 +522,7 @@ export class UserDataService {
   }
 
   public clear() {
-    this.id = null;
-    this.address = null;
-    this.archived_at = null;
-    this.archived_by = null;
-    this.birthdate = null;
-    this.cevi_name = null;
-    this.created_at = null;
-    this.created_by = null;
-    this.department = null;
-    this.email = null;
-    this.first_name = null;
-    this.gender = null;
-    this.js_certificate = null;
-    this.js_certificate_until = null;
-    this.language = null;
-    this.last_name = null;
-    this.modified_at = null;
-    this.modified_by = null;
-    this.position = null;
-    this.signup_completed = null;
-    this.url = null;
-    this.username = null;
+    this.fill(null);
   }
 
   private extractEssentials(user) {

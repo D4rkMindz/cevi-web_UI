@@ -31,6 +31,7 @@ export class VerifyComponent implements OnInit {
     const response = <any>await this.http.post(url, data);
     console.log(response);
     if ('verified' in response && response.verified) {
+      // TODO show flash message on login if email is not confirmed
       this.user.email_confirmed = true;
       this.user.save();
       const successkey = <string>_('Verified email successfully');
