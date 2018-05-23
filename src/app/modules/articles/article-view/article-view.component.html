@@ -1,3 +1,96 @@
-<p>
-  article-view works!
-</p>
+<mat-card *ngIf="!isLoaded">
+  <mat-card-title>{{'Loading...'|translate}}</mat-card-title>
+</mat-card>
+<mat-card *ngIf="isLoaded">
+  <mat-card-title>{{articleTitleObs | async}}</mat-card-title>
+  <mat-card-content>
+    <div [innerHTML]="articleDescriptionParsedObs | async"></div>
+    <p>
+      <strong>{{'Quality'|translate}}</strong>
+      <br>
+      {{articleQualityObs | async}} ({{'Level'|translate}} {{article.quality.level}})
+    </p>
+    <div *ngIf="article.quantity > 1 || article.quantity < 1">{{article.quantity}} {{'items'|translate}}</div>
+    <div *ngIf="article.quantity === 1">1 {{'item'|translate}}</div>
+    <p>{{'This article was bough at'|translate}} <!--{{article.purchase_date.format('ddd MMMM Do YYYY')}}--></p>
+    <div *ngIf="article.replacement.needed">
+      <h3>{{'Replacement needed until'|translate}} <!--{{article.replacement.date.format('ddd MMMM Do YYYY')}}--></h3>
+    </div>
+    <br>
+
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{'Storage Location'}}
+          </mat-panel-title>
+          <mat-panel-description>
+            {{'The storage location of the article'}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-grid-list [cols]="mobileQuery.matches ? 1 : 3" [rowHeight]="mobileQuery.matches ? '6:1' : '3:1'">
+          <mat-grid-tile>
+            <p>
+              <strong>{{'Storage Location'|translate}}</strong>
+              <br>
+              {{article.storage.name}}
+            </p>
+          </mat-grid-tile>
+
+          <mat-grid-tile>
+            <p>
+              <strong>{{'Room'|translate}}</strong>
+              <br>
+              {{article.room.name}}
+            </p>
+          </mat-grid-tile>
+
+          <mat-grid-tile>
+            <p>
+              <strong>{{'Corridor'|translate}}</strong>
+              <br>
+              {{article.corridor.name}}
+            </p>
+          </mat-grid-tile>
+
+          <mat-grid-tile>
+            <p>
+              <strong>{{'Shelf'|translate}}</strong>
+              <br>
+              {{article.shelf.name}}
+            </p>
+          </mat-grid-tile>
+
+          <mat-grid-tile>
+            <p>
+              <strong>{{'Tray'|translate}}</strong>
+              <br>
+              {{article.tray.name}}
+            </p>
+          </mat-grid-tile>
+
+          <mat-grid-tile>
+            <p>
+              <strong>{{'Chest'|translate}}</strong>
+              <br>
+              {{article.chest.name}}
+            </p>
+          </mat-grid-tile>
+
+        </mat-grid-list>
+
+      </mat-expansion-panel>
+      <!--<mat-expansion-panel>-->
+      <!--<mat-expansion-panel-header>-->
+      <!--<mat-panel-title>-->
+      <!--{{''}}-->
+      <!--</mat-panel-title>-->
+      <!--<mat-panel-description>-->
+
+      <!--</mat-panel-description>-->
+      <!--</mat-expansion-panel-header>-->
+      <!--<p>I'm visible because I am open</p>-->
+      <!--</mat-expansion-panel>-->
+    </mat-accordion>
+  </mat-card-content>
+</mat-card>

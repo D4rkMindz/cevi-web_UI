@@ -1,4 +1,5 @@
 import { toDate } from '../../../../functions/to-date';
+import { Moment } from 'moment';
 
 export class Article {
   /**
@@ -17,8 +18,8 @@ export class Article {
     name: { name_de: string, name_en: string, name_fr: string, name_it: string },
   };
   private _quantity: number;
-  private _purchase_date: Date;
-  private _replacement: { needed: boolean, date: Date };
+  private _purchase_date: Moment;
+  private _replacement: { needed: boolean, date: Moment };
 
   /**
    * Locations
@@ -33,11 +34,11 @@ export class Article {
   /**
    * Meta
    */
-  private _created_at: Date;
+  private _created_at: Moment;
   private _created_by: string;
-  private _modified_at: Date;
+  private _modified_at: Moment;
   private _modified_by: string;
-  private _archived_at: Date;
+  private _archived_at: Moment;
   private _archived_by: string;
 
   public constructor(data?: any) {
@@ -312,19 +313,19 @@ export class Article {
     this._quantity = value;
   }
 
-  get purchase_date(): Date {
+  get purchase_date(): Moment {
     return this._purchase_date;
   }
 
-  set purchase_date(value: Date) {
+  set purchase_date(value: Moment) {
     this._purchase_date = value;
   }
 
-  get replacement(): { needed: boolean; date: Date } {
+  get replacement(): { needed: boolean; date: Moment } {
     return this._replacement;
   }
 
-  set replacement(value: { needed: boolean; date: Date }) {
+  set replacement(value: { needed: boolean; date: Moment }) {
     this._replacement = value;
   }
 
@@ -376,11 +377,11 @@ export class Article {
     this._chest = value;
   }
 
-  get created_at(): Date {
+  get created_at(): Moment {
     return this._created_at;
   }
 
-  set created_at(value: Date) {
+  set created_at(value: Moment) {
     this._created_at = value;
   }
 
@@ -392,11 +393,11 @@ export class Article {
     this._created_by = value;
   }
 
-  get modified_at(): Date {
+  get modified_at(): Moment {
     return this._modified_at;
   }
 
-  set modified_at(value: Date) {
+  set modified_at(value: Moment) {
     this._modified_at = value;
   }
 
@@ -408,11 +409,11 @@ export class Article {
     this._modified_by = value;
   }
 
-  get archived_at(): Date {
+  get archived_at(): Moment {
     return this._archived_at;
   }
 
-  set archived_at(value: Date) {
+  set archived_at(value: Moment) {
     this._archived_at = value;
   }
 

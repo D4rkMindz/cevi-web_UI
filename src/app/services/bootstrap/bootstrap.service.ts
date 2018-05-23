@@ -121,7 +121,8 @@ export class BootstrapService {
    * @return {Promise<void>}
    */
   public async getUserFromStorage() {
-    const user = <any>await this.localStorage.getItem(config.keys.user);
+    const json = <any>await this.localStorage.getItem(config.keys.user);
+    const user = JSON.parse(json);
     if (user) {
       this.user.fill(user);
     }

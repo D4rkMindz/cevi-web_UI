@@ -64,6 +64,6 @@ export class UserLoaderService {
       username: this.user.username,
     };
 
-    await this.localStorage.setItem(config.keys.user, data);
+    await this.localStorage.setItem(config.keys.user, JSON.stringify(data));
   }
 }

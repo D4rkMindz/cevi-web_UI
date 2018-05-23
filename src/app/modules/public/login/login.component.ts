@@ -166,7 +166,7 @@ export class LoginComponent {
         username: this.user.username,
       };
 
-      await this.localStorage.setItem(config.keys.user, data);
+      await this.localStorage.setItem(config.keys.user, JSON.stringify(data));
     } catch (e) {
       if (e instanceof HttpErrorResponse) {
         const key = <string>_('Loading userdata failed. Please try again later. ERROR 404');

@@ -3,6 +3,7 @@ import { toDate } from '../../../../functions/to-date';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { LocalStorageService } from '../storage/local-storage.service';
 import { config } from '../../../../config/config';
+import { Moment } from 'moment';
 
 @Injectable()
 export class UserDataService {
@@ -274,20 +275,20 @@ export class UserDataService {
   /**
    * Birthdate entity
    */
-  private _birthdate: Date;
+  private _birthdate: Moment;
 
-  get birthdate(): Date {
+  get birthdate(): Moment {
     return this._birthdate;
   }
 
-  set birthdate(value: Date) {
+  set birthdate(value: Moment) {
     this._birthdateObs.next(value);
     this._birthdate = value;
   }
 
-  private _birthdateObs: BehaviorSubject<Date> = new BehaviorSubject<Date>(null);
+  private _birthdateObs: BehaviorSubject<Moment> = new BehaviorSubject<Moment>(null);
 
-  get birthdateObs(): BehaviorSubject<Date> {
+  get birthdateObs(): BehaviorSubject<Moment> {
     return this._birthdateObs;
   }
 
@@ -348,20 +349,20 @@ export class UserDataService {
     return this._signup_completedObs;
   }
 
-  private _created_at: Date;
+  private _created_at: Moment;
 
-  get created_at(): Date {
+  get created_at(): Moment {
     return this._created_at;
   }
 
-  set created_at(value: Date) {
+  set created_at(value: Moment) {
     this._created_atObs.next(value);
     this._created_at = value;
   }
 
-  private _created_atObs: BehaviorSubject<Date> = new BehaviorSubject<Date>(null);
+  private _created_atObs: BehaviorSubject<Moment> = new BehaviorSubject<Moment>(null);
 
-  get created_atObs(): BehaviorSubject<Date> {
+  get created_atObs(): BehaviorSubject<Moment> {
     return this._created_atObs;
   }
 
@@ -382,20 +383,20 @@ export class UserDataService {
     return this._created_byObs;
   }
 
-  private _modified_at: Date;
+  private _modified_at: Moment;
 
-  get modified_at(): Date {
+  get modified_at(): Moment {
     return this._modified_at;
   }
 
-  set modified_at(value: Date) {
+  set modified_at(value: Moment) {
     this._modified_atObs.next(value);
     this._modified_at = value;
   }
 
-  private _modified_atObs: BehaviorSubject<Date> = new BehaviorSubject<Date>(null);
+  private _modified_atObs: BehaviorSubject<Moment> = new BehaviorSubject<Moment>(null);
 
-  get modified_atObs(): BehaviorSubject<Date> {
+  get modified_atObs(): BehaviorSubject<Moment> {
     return this._modified_atObs;
   }
 
@@ -416,20 +417,20 @@ export class UserDataService {
     return this._modified_byObs;
   }
 
-  private _archived_at: Date;
+  private _archived_at: Moment;
 
-  get archived_at(): Date {
+  get archived_at(): Moment {
     return this._archived_at;
   }
 
-  set archived_at(value: Date) {
+  set archived_at(value: Moment) {
     this._archived_atObs.next(value);
     this._archived_at = value;
   }
 
-  private _archived_atObs: BehaviorSubject<Date> = new BehaviorSubject<Date>(null);
+  private _archived_atObs: BehaviorSubject<Moment> = new BehaviorSubject<Moment>(null);
 
-  get archived_atObs(): BehaviorSubject<Date> {
+  get archived_atObs(): BehaviorSubject<Moment> {
     return this._archived_atObs;
   }
 
@@ -518,7 +519,7 @@ export class UserDataService {
       url: this.url,
       username: this.username,
     };
-    this.localStorage.setItem(config.keys.user, data);
+    this.localStorage.setItem(config.keys.user, JSON.stringify(data));
   }
 
   public clear() {

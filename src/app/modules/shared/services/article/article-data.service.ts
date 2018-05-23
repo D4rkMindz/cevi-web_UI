@@ -57,7 +57,8 @@ export class ArticleDataService {
    * @return {Promise<void>}
    */
   private async loadArticlesFromStorage() {
-    const articles = <any>await this.localStorage.getItem(config.keys.articles);
+    const json = <any>await this.localStorage.getItem(config.keys.articles);
+    const articles = JSON.parse(json);
     if (articles) {
       articles.forEach((data) => {
         this.addArticle(new Article(data));
@@ -72,7 +73,7 @@ export class ArticleDataService {
   private async saveArticles() {
     const saveableArticles = [];
     this._articles.forEach((article: Article) => saveableArticles.push(article.toObject()));
-    await this.localStorage.setItem(config.keys.articles, saveableArticles);
+    await this.localStorage.setItem(config.keys.articles, JSON.stringify(saveableArticles));
   }
 
   /**

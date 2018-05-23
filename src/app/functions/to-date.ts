@@ -1,15 +1,15 @@
+import * as moment from 'moment';
+
 /**
- * Convert a string to Date
  * @param {string | Date} yyyyMmDd
- * @return {Date}
+ * @returns {Moment}
  */
-export function toDate(yyyyMmDd: string | Date): Date {
+export function toDate(yyyyMmDd: string | Date): moment.Moment {
   if (!yyyyMmDd) {
     return null;
   }
   if (yyyyMmDd instanceof Date) {
-    return yyyyMmDd;
+    return moment(yyyyMmDd.toString());
   }
-  const [year, month, day] = yyyyMmDd.split('-');
-  return new Date(parseInt(year, 10), parseInt(month, 10) - 1, parseInt(day, 10));
+  return moment(yyyyMmDd);
 }

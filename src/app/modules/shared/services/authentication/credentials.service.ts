@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Moment } from 'moment';
 
 @Injectable()
 export class CredentialsService {
@@ -37,13 +38,13 @@ export class CredentialsService {
     this._email = value;
   }
 
-  private _expiresAt: Date;
+  private _expiresAt: Moment;
 
-  get expiresAt(): Date {
+  get expiresAt(): Moment {
     return this._expiresAt;
   }
 
-  set expiresAt(value: Date) {
+  set expiresAt(value: Moment) {
     this._expiresAt = value;
   }
 
