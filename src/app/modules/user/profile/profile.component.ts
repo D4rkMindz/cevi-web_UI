@@ -36,10 +36,9 @@ export class ProfileComponent {
     const dialogRef = this.dialog.open(UserInfoDialogComponent, {
       width: '80%',
     });
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-
-    });
+    // Todo remove this unused code in prod
+    // dialogRef.afterClosed().subscribe(result => {
+    // });
   }
 
   /**

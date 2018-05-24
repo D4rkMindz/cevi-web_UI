@@ -69,7 +69,6 @@ export class AppModule {
         l = 'en-gb';
       }
       moment.locale(l);
-      console.log('Moment locale is ', moment.locale());
     });
   }
 }

@@ -10,6 +10,9 @@ import { UserDataService } from '../../shared/services/user/user-data.service';
 import { UserLoaderService } from '../../shared/services/loaders/user/user-loader.service';
 import { SnackbarService } from '../../shared/services/snackbar/snackbar.service';
 import { __ } from '../../../functions/translation';
+import { LocalStorageService } from '../../shared/services/storage/local-storage.service';
+import { GenderService } from '../../shared/services/gender/gender.service';
+import { Gender } from '../../shared/services/gender/Gender';
 
 @Component({
   selector: 'cevi-web-user-info-dialog',
@@ -33,6 +36,8 @@ export class UserInfoDialogComponent implements OnInit {
    * @param {UserDataService} user
    * @param userLoader
    * @param snackbar
+   * @param localStorage
+   * @param gender
    */
   constructor(private formBuilder: FormBuilder,
               private dialog: MatDialogRef<UserInfoDialogComponent>,
@@ -41,7 +46,9 @@ export class UserInfoDialogComponent implements OnInit {
               private translate: TranslateService,
               private user: UserDataService,
               private userLoader: UserLoaderService,
-              private snackbar: SnackbarService) {
+              private snackbar: SnackbarService,
+              private localStorage: LocalStorageService,
+              private gender: GenderService) {
     this.lang = this.translate.currentLang.slice(0, 2);
   }
 
@@ -106,7 +113,7 @@ export class UserInfoDialogComponent implements OnInit {
    * Prepare the form to display
    * @returns {Promise<void>}
    */
-  private prepareForm() {
+  private async prepareForm() {
     this.form = this.formBuilder.group({
       username: [this.user.username, [Validators.minLength(3), Validators.maxLength(255), Validators.required]],
       cevi_name: [this.user.cevi_name, [Validators.minLength(3), Validators.maxLength(255)]],
@@ -114,24 +121,13 @@ export class UserInfoDialogComponent implements OnInit {
       last_name: [this.user.last_name, [Validators.minLength(3), Validators.maxLength(255)]],
       gender: [this.user.gender.id, [Validators.required]],
     });
-    this.loadGenders();
-  }
-
-  /**
-   * Load all genders from server
-   * @returns {Promise<void>}
-   */
-  private async loadGenders() {
-    const url = config.defaults.url.base + config.defaults.url.apiVersion + '/genders';
-    const response = <any>await this.http.get(url);
-    if (!response) {
-      return;
+    let genders = this.gender.getFormattedGenders();
+    if (!genders) {
+      genders = await this.gender.loadAndGetGenders();
     }
-    const data = [];
-    response.genders.forEach(gender => {
-      data.push({id: gender.id, name: gender['name_' + this.lang]});
-    });
-    this.genders = data;
+
+    this.genders = genders;
     this.selectedGender = this.user.gender.id;
   }
+
 }

@@ -55,6 +55,7 @@ import { ArticleDataService } from './services/article/article-data.service';
 import { CdkTableModule } from '@angular/cdk/table';
 import { MomentModule } from 'ngx-moment';
 import { MomentPipe } from './pipes/moment/moment.pipe';
+import { GenderService } from './services/gender/gender.service';
 
 @NgModule({
   imports: [
@@ -169,6 +170,7 @@ export class SharedModule {
         LocalStorageService,
         ReadableLanguageConverterService,
         UserDataService,
+        GenderService,
       ],
     };
   }

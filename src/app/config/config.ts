@@ -28,5 +28,6 @@ export const config = {
     credentials: 'credentials',
     user: 'user',
     articles: 'articles',
+    genders: 'genders',
   },
 };
