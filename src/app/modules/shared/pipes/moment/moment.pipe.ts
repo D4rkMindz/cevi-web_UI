@@ -21,7 +21,7 @@ export class MomentPipe implements PipeTransform {
    * @returns {any}
    */
   transform(value: string, format?: string): any {
-    format = format ? format : 'MMMM Do YYYY';
+    format = format ? format : 'Do MMMM  YYYY';
     const initVal = moment(value).locale(moment.locale()).format(format);
     const momentObs = new BehaviorSubject<string>(initVal);
     this.translate.onLangChange.subscribe(() => {
