@@ -3,6 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { config } from './config/config';
 import { injector } from './services/injector';
+import * as moment from 'moment';
 
 @Component({
   selector: 'cevi-web-root',

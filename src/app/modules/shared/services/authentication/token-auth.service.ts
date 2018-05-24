@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CredentialsService } from './credentials.service';
 import { TranslateService } from '@ngx-translate/core';
 import { config } from '../../../../config/config';
+import * as moment from 'moment';
+import { toDate } from '../../../../functions/to-date';
 
 @Injectable()
 export class TokenAuthService {
@@ -35,7 +37,7 @@ export class TokenAuthService {
 
     this.credentials.token = response.token;
     this.credentials.userId = response.user_id;
-    this.credentials.expiresAt = new Date(response.expires_at);
+    this.credentials.expiresAt = toDate(response.expires_at);
   }
 
 }

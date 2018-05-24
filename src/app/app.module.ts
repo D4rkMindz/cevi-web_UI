@@ -10,10 +10,12 @@ import { config } from './config/config';
 import { AuthGuard } from './guards/auth.guard';
 import { SharedModule } from './modules/shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { DepartmentGuard } from './guards/department.guard';
+import * as moment from 'moment';
+import 'moment/min/locales';
 
 @NgModule({
   declarations: [
@@ -52,13 +54,22 @@ import { DepartmentGuard } from './guards/department.guard';
   bootstrap: [AppComponent],
 })
 export class AppModule {
-  constructor(private ngForageConfig: NgForageConfig) {
+  constructor(private ngForageConfig: NgForageConfig, private translate: TranslateService) {
     this.ngForageConfig.configure({
       name: config.appName,
       driver: [
         NgForageConfig.DRIVER_INDEXEDDB,
         NgForageConfig.DRIVER_LOCALSTORAGE,
       ],
+    });
+    moment.locale(config.defaults.language.default);
+    this.translate.onLangChange.subscribe((lang) => {
+      let l = lang.lang;
+      if (l === 'en') {
+        l = 'en-gb';
+      }
+      moment.locale(l);
+      console.log('Moment locale is ', moment.locale());
     });
   }
 }

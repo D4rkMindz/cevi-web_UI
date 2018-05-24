@@ -5,6 +5,8 @@
   <mat-card-title>{{articleTitleObs | async}}</mat-card-title>
   <mat-card-content>
     <div [innerHTML]="articleDescriptionParsedObs | async"></div>
+    <mat-divider></mat-divider>
+    <br>
     <p>
       <strong>{{'Quality'|translate}}</strong>
       <br>
@@ -12,9 +14,9 @@
     </p>
     <div *ngIf="article.quantity > 1 || article.quantity < 1">{{article.quantity}} {{'items'|translate}}</div>
     <div *ngIf="article.quantity === 1">1 {{'item'|translate}}</div>
-    <p>{{'This article was bough at'|translate}} <!--{{article.purchase_date.format('ddd MMMM Do YYYY')}}--></p>
+    <p>{{'This article was bough at'|translate}} {{article.purchase_date| dynamicMoment | async}}</p>
     <div *ngIf="article.replacement.needed">
-      <h3>{{'Replacement needed until'|translate}} <!--{{article.replacement.date.format('ddd MMMM Do YYYY')}}--></h3>
+      <h3>{{'Replacement needed until'|translate}} {{article.replacement.date | dynamicMoment | async}}</h3>
     </div>
     <br>
 
@@ -28,56 +30,41 @@
             {{'The storage location of the article'}}
           </mat-panel-description>
         </mat-expansion-panel-header>
-        <mat-grid-list [cols]="mobileQuery.matches ? 1 : 3" [rowHeight]="mobileQuery.matches ? '6:1' : '3:1'">
-          <mat-grid-tile>
-            <p>
-              <strong>{{'Storage Location'|translate}}</strong>
-              <br>
-              {{article.storage.name}}
-            </p>
-          </mat-grid-tile>
 
-          <mat-grid-tile>
-            <p>
-              <strong>{{'Room'|translate}}</strong>
-              <br>
-              {{article.room.name}}
-            </p>
-          </mat-grid-tile>
+        <mat-card [routerLink]="['/','storages', 'locations', article.storage.id]">
+          <mat-card-title>{{'Storage Location'|translate}}</mat-card-title>
+          <br>
+          {{article.storage.name}}
+        </mat-card>
 
-          <mat-grid-tile>
-            <p>
-              <strong>{{'Corridor'|translate}}</strong>
-              <br>
-              {{article.corridor.name}}
-            </p>
-          </mat-grid-tile>
+        <mat-card [routerLink]="['/','storages', 'locations', article.room.id]">
+          <mat-card-title>{{'Room'|translate}}</mat-card-title>
+          <br>
+          {{article.room.name}}
+        </mat-card>
 
-          <mat-grid-tile>
-            <p>
-              <strong>{{'Shelf'|translate}}</strong>
-              <br>
-              {{article.shelf.name}}
-            </p>
-          </mat-grid-tile>
+        <mat-card [routerLink]="['/','storages', 'locations', article.corridor.id]">
+          <mat-card-title>{{'Corridor'|translate}}</mat-card-title>
+          <mat-card-content>{{article.corridor.name}}</mat-card-content>
+        </mat-card>
 
-          <mat-grid-tile>
-            <p>
-              <strong>{{'Tray'|translate}}</strong>
-              <br>
-              {{article.tray.name}}
-            </p>
-          </mat-grid-tile>
+        <mat-card [routerLink]="['/','storages', 'locations', article.shelf.id]">
+          <mat-card-title>{{'Shelf'|translate}}</mat-card-title>
+          <br>
+          {{article.shelf.name}}
+        </mat-card>
 
-          <mat-grid-tile>
-            <p>
-              <strong>{{'Chest'|translate}}</strong>
-              <br>
-              {{article.chest.name}}
-            </p>
-          </mat-grid-tile>
+        <mat-card [routerLink]="['/','storages', 'locations', article.tray.id]">
+          <mat-card-title>{{'Tray'|translate}}</mat-card-title>
+          <br>
+          {{article.tray.name}}
+        </mat-card>
 
-        </mat-grid-list>
+        <mat-card [routerLink]="['/','storages', 'locations', article.chest.id]">
+          <mat-card-title>{{'Chest'|translate}}</mat-card-title>
+          <br>
+          {{article.chest.name}}
+        </mat-card>
 
       </mat-expansion-panel>
       <!--<mat-expansion-panel>-->

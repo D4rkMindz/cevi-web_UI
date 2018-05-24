@@ -6,6 +6,7 @@ import { CredentialsService } from '../../modules/shared/services/authentication
 import { UserDataService } from '../../modules/shared/services/user/user-data.service';
 import { injector } from '../injector';
 import { SecureHttpService } from '../../modules/shared/services/http/secure-http.service';
+import * as moment from 'moment';
 
 @Injectable()
 export class BootstrapService {

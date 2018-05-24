@@ -53,6 +53,8 @@ import {
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ArticleDataService } from './services/article/article-data.service';
 import { CdkTableModule } from '@angular/cdk/table';
+import { MomentModule } from 'ngx-moment';
+import { MomentPipe } from './pipes/moment/moment.pipe';
 
 @NgModule({
   imports: [
@@ -102,6 +104,7 @@ import { CdkTableModule } from '@angular/cdk/table';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
+    MomentModule,
   ],
   exports: [
     CdkTableModule,
@@ -145,7 +148,10 @@ import { CdkTableModule } from '@angular/cdk/table';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
+    MomentModule,
+    MomentPipe,
   ],
+  declarations: [MomentPipe],
 })
 export class SharedModule {
   public static forRoot(): ModuleWithProviders {
