@@ -8,6 +8,8 @@ import { ArticleOverviewComponent } from './article-overview/article-overview.co
 import { NavbarModule } from '../navbar/navbar.module';
 import { ArticleTableComponent } from './article-table/article-table.component';
 import { ArticleViewComponent } from './article-view/article-view.component';
+import { ArticleEditDialogComponent } from './article-edit-dialog/article-edit-dialog.component';
+import { StoragePlaceSelectionDialogComponent } from './storage-place-selection-dialog/storage-place-selection-dialog.component';
 
 @NgModule({
   imports: [
@@ -16,6 +18,18 @@ import { ArticleViewComponent } from './article-view/article-view.component';
     NavbarModule,
     SharedModule,
   ],
-  declarations: [ArticlesComponent, ArticleOverviewComponent, ArticleTableComponent, ArticleViewComponent]
+  declarations: [
+    ArticlesComponent,
+    ArticleOverviewComponent,
+    ArticleTableComponent,
+    ArticleViewComponent,
+    ArticleEditDialogComponent,
+    StoragePlaceSelectionDialogComponent,
+  ],
+  entryComponents: [
+    ArticleEditDialogComponent,
+    StoragePlaceSelectionDialogComponent,
+  ],
 })
-export class ArticlesModule { }
+export class ArticlesModule {
+}

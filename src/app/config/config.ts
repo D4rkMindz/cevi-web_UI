@@ -29,5 +29,6 @@ export const config = {
     user: 'user',
     articles: 'articles',
     genders: 'genders',
+    qualityLevels: 'quality_levels'
   },
 };

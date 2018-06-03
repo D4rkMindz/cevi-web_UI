@@ -59,9 +59,9 @@ export class SnackbarService {
     snackbar.onAction().subscribe(() => {
       const body = 'Hi \nI found an error @' + page + '. The Error Message is';
       const subject = 'ERRORREPORT ' + code;
-      // TODO make link work
+      // TODO LEVEL 3 make link work
       const url = `mailto:error@cevi-web.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      alert('Thanks')
+      alert('Thanks');
     });
   }
 }

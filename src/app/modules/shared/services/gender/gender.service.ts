@@ -93,7 +93,7 @@ export class GenderService {
    */
   private formatGenders() {
     const data = [];
-    this.genders.forEach(gender => {
+    this.genders.forEach((gender: Gender) => {
       data.push({id: gender.id, name: gender['name_' + this.lang]});
     });
     this.gendersFormatted = data;

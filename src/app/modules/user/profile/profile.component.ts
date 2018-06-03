@@ -33,12 +33,9 @@ export class ProfileComponent {
    * Edit user
    */
   public editUser() {
-    const dialogRef = this.dialog.open(UserInfoDialogComponent, {
+    this.dialog.open(UserInfoDialogComponent, {
       width: '80%',
     });
-    // Todo remove this unused code in prod
-    // dialogRef.afterClosed().subscribe(result => {
-    // });
   }
 
   /**

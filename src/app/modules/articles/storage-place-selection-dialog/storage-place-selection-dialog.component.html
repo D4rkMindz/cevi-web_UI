@@ -1,0 +1,32 @@
+<div class="article-dialog-container">
+  <form>
+    <h1 mat-dialog-title>{{'General Information' | translate}}</h1>
+    <!-- TODO LEVEL 3 Fix indentation -->
+    <mat-dialog-content>
+      <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="1em" fxLayoutGap.lt-sm="0">
+        <mat-form-field fxFlex="50%" fxFlex.lt-sm="100%">
+          <mat-select [(value)]="selecetedSL" placeholder="{{'Storage location' | translate}}">
+            <mat-option *ngFor="let sl of sls" [value]="sl.id">
+              {{sl.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+    </mat-dialog-content>
+    <mat-dialog-actions>
+
+      <div fxLayout="row" fxFlex="100">
+        <div fxFlex="40" fxFlexOffset="60" fxFlex.gt-md="25" fxFlexOffset.gt-md="75" fxFlex.lt-sm="100"
+             fxFlexOffset.lt-sm="0">
+          <button mat-raised-button type="submit" color="primary" fxFlex="50">
+            {{'Confirm'|translate}}
+          </button>
+          <button mat-raised-button mat-dialog-close type="button" color="warn" fxFlex="50">
+            {{'Cancel'|translate}}
+          </button>
+        </div>
+      </div>
+    </mat-dialog-actions>
+  </form>
+</div>

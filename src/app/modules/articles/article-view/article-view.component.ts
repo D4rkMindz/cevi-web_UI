@@ -9,6 +9,10 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { TranslateService } from '@ngx-translate/core';
 import { config } from '../../../config/config';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { MatDialog } from '@angular/material';
+import { UserInfoDialogComponent } from '../../user/user-info-dialog/user-info-dialog.component';
+import { ArticleEditDialogComponent } from '../article-edit-dialog/article-edit-dialog.component';
+import { StoragePlaceSelectionDialogComponent } from '../storage-place-selection-dialog/storage-place-selection-dialog.component';
 
 @Component({
   selector: 'cevi-web-article-view',
@@ -35,6 +39,7 @@ export class ArticleViewComponent implements OnInit {
    * @param {SnackbarService} snackbar
    * @param translate
    * @param {Router} router
+   * @param dialog
    * @param changeDetectorRef
    * @param media
    */
@@ -43,6 +48,7 @@ export class ArticleViewComponent implements OnInit {
               private snackbar: SnackbarService,
               private translate: TranslateService,
               private router: Router,
+              private dialog: MatDialog,
               private changeDetectorRef: ChangeDetectorRef,
               private media: MediaMatcher) {
     this.registerMobileQuery();
@@ -80,6 +86,25 @@ export class ArticleViewComponent implements OnInit {
     this.articleDescriptionPlainObs.next(this.article.description['name_' + this.currentLang].plain);
     this.articleDescriptionParsedObs.next(this.article.description['name_' + this.currentLang].parsed);
     this.articleQualityObs.next(this.article.quality.name['name_' + this.currentLang]);
+  }
+
+  /**
+   * Edit article
+   */
+  public editArticle() {
+    const dialogRef = this.dialog.open(ArticleEditDialogComponent, {
+      width: '80vw',
+      data: {
+        article: this.article,
+      }
+    });
+  }
+
+  public editStorageLocation() {
+    this.dialog.open(StoragePlaceSelectionDialogComponent, {
+      width: '80vw',
+      data: {article: this.article},
+    });
   }
 
   /**

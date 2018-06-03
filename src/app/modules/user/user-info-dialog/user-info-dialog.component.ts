@@ -12,7 +12,6 @@ import { SnackbarService } from '../../shared/services/snackbar/snackbar.service
 import { __ } from '../../../functions/translation';
 import { LocalStorageService } from '../../shared/services/storage/local-storage.service';
 import { GenderService } from '../../shared/services/gender/gender.service';
-import { Gender } from '../../shared/services/gender/Gender';
 
 @Component({
   selector: 'cevi-web-user-info-dialog',
@@ -24,7 +23,7 @@ export class UserInfoDialogComponent implements OnInit {
 
   public genders;
   public lang: string;
-  public selectedGender: string;
+  public selectedGenderId: string;
 
   /**
    * UserInfoDialogComponent constructor
@@ -103,8 +102,8 @@ export class UserInfoDialogComponent implements OnInit {
       changes['last_name'] = data.last_name;
     }
 
-    if (this.selectedGender !== this.user.gender.id) {
-      changes['gender_id'] = this.selectedGender;
+    if (this.selectedGenderId !== this.user.gender.id) {
+      changes['gender_id'] = this.selectedGenderId;
     }
     return changes;
   }
@@ -127,7 +126,7 @@ export class UserInfoDialogComponent implements OnInit {
     }
 
     this.genders = genders;
-    this.selectedGender = this.user.gender.id;
+    this.selectedGenderId = this.user.gender.id;
   }
 
 }

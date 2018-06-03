@@ -19,9 +19,9 @@ export class NavbarComponent {
 
   public appName = config.appName;
   public mobileQuery: MediaQueryList;
+  private _mobileQueryListener: () => void;
   public lang = 'de';
   public readableLanguage: BehaviorSubject<string> = new BehaviorSubject<string>('n/a');
-  private _mobileQueryListener: () => void;
 
   constructor(private changeDetectorRef: ChangeDetectorRef,
               private media: MediaMatcher,

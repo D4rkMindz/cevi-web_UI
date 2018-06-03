@@ -14,6 +14,7 @@ export class Article {
     name_it: { plain: string, parsed: string },
   };
   private _quality: {
+    id: string,
     level: number,
     name: { name_de: string, name_en: string, name_fr: string, name_it: string },
   };
@@ -154,9 +155,13 @@ export class Article {
 
     if ('quality' in data) {
       const quality = {
+        id: null,
         level: null,
         name: {name_de: null, name_en: null, name_fr: null, name_it: null},
       };
+      if ('id' in data.quality) {
+        quality.id = data.quality.id;
+      }
       if ('level' in data.quality) {
         quality.level = data.quality.level;
       }
@@ -297,11 +302,11 @@ export class Article {
     this._description = value;
   }
 
-  get quality(): { level: number; name: { name_de: string; name_en: string; name_fr: string; name_it: string } } {
+  get quality(): { id: string, level: number; name: { name_de: string; name_en: string; name_fr: string; name_it: string } } {
     return this._quality;
   }
 
-  set quality(value: { level: number; name: { name_de: string; name_en: string; name_fr: string; name_it: string } }) {
+  set quality(value: { id: string, level: number; name: { name_de: string; name_en: string; name_fr: string; name_it: string } }) {
     this._quality = value;
   }
 

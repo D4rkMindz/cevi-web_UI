@@ -40,7 +40,7 @@
     <div fxLayout="row" fxLayout.lt-sm="column">
 
       <mat-form-field fxFlex="35%" fxFlex.lt-sm="100%">
-        <mat-select [(value)]="selectedGender" placeholder="{{'Gender'|translate}}">
+        <mat-select [(value)]="selectedGenderId" placeholder="{{'Gender'|translate}}">
           <mat-option *ngFor="let gender of genders" [value]="gender.id">
             {{ gender.name }}
           </mat-option>

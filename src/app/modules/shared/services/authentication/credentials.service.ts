@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Moment } from 'moment';
+import { toDate } from '../../../../functions/to-date';
 
 @Injectable()
 export class CredentialsService {
@@ -84,8 +85,8 @@ export class CredentialsService {
     if (!this.token || !this.expiresAt) {
       return true;
     }
-
-    return this.expiresAt.valueOf() <= new Date(Date.now()).valueOf();
+    // TODO find a better solution to get moment date for comparison
+    return this.expiresAt.diff(toDate(new Date())) > 0;
   }
 
   public hasCredentials() {

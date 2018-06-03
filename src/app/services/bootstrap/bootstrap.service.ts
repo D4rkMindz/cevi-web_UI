@@ -6,7 +6,7 @@ import { CredentialsService } from '../../modules/shared/services/authentication
 import { UserDataService } from '../../modules/shared/services/user/user-data.service';
 import { injector } from '../injector';
 import { SecureHttpService } from '../../modules/shared/services/http/secure-http.service';
-import * as moment from 'moment';
+import { toDate } from '../../functions/to-date';
 
 @Injectable()
 export class BootstrapService {
@@ -73,7 +73,8 @@ export class BootstrapService {
    * @return {Promise<void>}
    */
   public async loadDataFromStorage() {
-    const credentials = <any>await this.localStorage.getItem(config.keys.credentials);
+    const json = <string>await this.localStorage.getItem(config.keys.credentials);
+    const credentials = JSON.parse(json);
 
     if (!credentials) {
       return;
@@ -100,7 +101,7 @@ export class BootstrapService {
     }
 
     if (!!credentials._expiresAt) {
-      this.credentials.expiresAt = credentials._expiresAt;
+      this.credentials.expiresAt = toDate(credentials._expiresAt);
     }
 
     if (!!credentials._userId) {

@@ -17,6 +17,7 @@ import { DepartmentGuard } from './guards/department.guard';
 import * as moment from 'moment';
 import 'moment/min/locales';
 
+// TODO prevent user from seeing other departments stuff by manipulating his localstorage department id
 @NgModule({
   declarations: [
     AppComponent,

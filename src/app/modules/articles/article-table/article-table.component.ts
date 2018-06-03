@@ -40,7 +40,7 @@ export class ArticleTableComponent implements OnInit, AfterViewInit {
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim();
     filterValue = filterValue.toLowerCase();
-    // TODO make filter more accurate
+    // TODO LEVEL 2 make filter more accurate
     this.dataSource.filter = filterValue;
   }
 

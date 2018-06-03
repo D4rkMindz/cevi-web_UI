@@ -1,0 +1,101 @@
+<div class="article-dialog-container">
+  <form [formGroup]="form">
+    <h1 mat-dialog-title>{{'General Information' | translate}}</h1>
+    <mat-dialog-content>
+      <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="1em" fxLayoutGap.lt-sm="0">
+        <mat-form-field fxFlex="50%" fxFlex.lt-sm="100%">
+          <input matInput formControlName="title" placeholder="{{'Title'|translate}}">
+          <mat-error *ngIf="form.controls['title'].hasError('specific')">
+            {{form.controls['title'].getError('specific')}}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlex="50%" fxFlex.lt-sm="100%">
+          <mat-select [(value)]="selectedQualityLevelId" placeholder="{{'Quality' | translate}}">
+            <mat-option *ngFor="let level of levels" [value]="level.id">
+              {{level.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="1em" fxLayoutGap.lt-sm="0">
+        <mat-form-field fxFlex="50%" fxFlex.lt-sm="100%">
+          <input matInput formControlName="quantity" placeholder="{{'Quantity'|translate}}">
+          <mat-error *ngIf="form.controls['quantity'].hasError('specific')">
+            {{form.controls['quantity'].getError('specific')}}
+          </mat-error>
+          <mat-error *ngIf="form.controls['quantity'].hasError('required')">
+            {{'Required' | translate}}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlex="50%" fxFlex.lt-sm="100%">
+          <input matInput
+                 [matDatepicker]="purchaseDatepicker"
+                 formControlName="purchaseDate"
+                 placeholder="{{'Purchase date'|translate}}">
+          <mat-datepicker-toggle matSuffix [for]="purchaseDatepicker"></mat-datepicker-toggle>
+          <mat-datepicker [touchUi]="mobileQuery.matches" #purchaseDatepicker></mat-datepicker>
+          <mat-error *ngIf="form.controls['purchaseDate'].hasError('specific')">
+            {{form.controls['purchaseDate'].getError('specific')}}
+          </mat-error>
+          <mat-error *ngIf="form.controls['purchaseDate'].hasError('required')">
+            {{'Required' | translate}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row">
+        <trumbowyg-ngx-editor formControlName="editor" fxFlex="100%"></trumbowyg-ngx-editor>
+      </div>
+
+      <div fxLayout="row" fxLayout.lt-sm="column">
+        <div fxFlex="50%" fxFlex.lt-sm="100%" fxFlexOrder="1" fxFlexOrder.lt-sm="2" ngClass.lt-sm="replacement">
+          <mat-slide-toggle [checked]="replacementNeeded" (change)="toggleReplacement()">
+            {{'Replacement required' | translate}}
+          </mat-slide-toggle>
+        </div>
+        <div fxFlex="50%" fxFlex.lt-sm="100%" fxFlexOrder="2" fxFlexOrder.lt-sm="1" fxLayoutAlign="center center">
+          <button mat-raised-button fxFlex="100%"
+                  color="primary"
+                  (click)="editStorageLocation()">
+            {{'Change stored Location' | translate}}
+          </button>
+        </div>
+      </div>
+
+      <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="1em" fxLayoutGap.lt-sm="0">
+        <div fxFlex="50%" fxFlex.lt-sm="100%" [class.invisible]="!replacementNeeded">
+          <mat-form-field fxFlex="100%">
+            <input matInput
+                   [matDatepicker]="replacementDatepicker"
+                   formControlName="replacementUntil"
+                   placeholder="{{'Replacement date'|translate}}">
+            <mat-datepicker-toggle matSuffix [for]="replacementDatepicker"></mat-datepicker-toggle>
+            <mat-datepicker [touchUi]="mobileQuery.matches" #replacementDatepicker></mat-datepicker>
+            <mat-error *ngIf="form.controls['replacementUntil'].hasError('specific')">
+              {{form.controls['replacementUntil'].getError('specific')}}
+            </mat-error>
+            <mat-error *ngIf="form.controls['replacementUntil'].hasError('required')">
+              {{'Required' | translate}}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+    </mat-dialog-content>
+    <mat-dialog-actions>
+
+      <div fxLayout="row" fxFlex="100">
+        <div fxFlex="40" fxFlexOffset="60" fxFlex.gt-md="25" fxFlexOffset.gt-md="75" fxFlex.lt-sm="100"
+             fxFlexOffset.lt-sm="0">
+          <button mat-raised-button (click)="save()" type="submit" color="primary" fxFlex="50">
+            {{'Confirm'|translate}}
+          </button>
+          <button mat-raised-button mat-dialog-close type="button" color="warn" fxFlex="50">
+            {{'Cancel'|translate}}
+          </button>
+        </div>
+      </div>
+    </mat-dialog-actions>
+  </form>
+</div>

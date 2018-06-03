@@ -57,7 +57,7 @@ export class AuthService {
 
     if (stayLoggedIn && !!token) {
       // save the credential data into the local storage
-      await this.localStorage.setItem(config.keys.credentials, this.credentials);
+      await this.localStorage.setItem(config.keys.credentials, JSON.stringify(this.credentials));
     }
 
     // if the token was received, the user can login

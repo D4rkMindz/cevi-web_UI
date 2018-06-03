@@ -56,6 +56,10 @@ import { CdkTableModule } from '@angular/cdk/table';
 import { MomentModule } from 'ngx-moment';
 import { MomentPipe } from './pipes/moment/moment.pipe';
 import { GenderService } from './services/gender/gender.service';
+import { MatEditorComponent } from './components/mat-editor/mat-editor.component';
+import { TrumbowygNgxModule } from 'trumbowyg-ngx';
+import { QualityLevelService } from './services/quality/quality-level.service';
+import { StorageLocationService } from './services/storage-location/storage-location.service';
 
 @NgModule({
   imports: [
@@ -106,6 +110,23 @@ import { GenderService } from './services/gender/gender.service';
     MatToolbarModule,
     MatTooltipModule,
     MomentModule,
+    TrumbowygNgxModule.withConfig({
+      svgPath: 'assets/ui/icons.svg',
+      autogrow: false,
+      autogrowOnEnter: false,
+      removeformatPasted: false,
+      resetCss: true,
+      btns: [
+        ['undo', 'redo'],
+        ['formatting'],
+        ['strong', 'em', 'del'],
+        ['link'],
+        ['insertImage'],
+        ['unorderedList', 'orderedList'],
+        ['horizontalRule'],
+        ['removeformat'],
+      ],
+    }),
   ],
   exports: [
     CdkTableModule,
@@ -151,8 +172,13 @@ import { GenderService } from './services/gender/gender.service';
     MatTooltipModule,
     MomentModule,
     MomentPipe,
+    MatEditorComponent,
+    TrumbowygNgxModule,
   ],
-  declarations: [MomentPipe],
+  declarations: [
+    MomentPipe,
+    MatEditorComponent,
+  ],
 })
 export class SharedModule {
   public static forRoot(): ModuleWithProviders {
@@ -171,6 +197,8 @@ export class SharedModule {
         ReadableLanguageConverterService,
         UserDataService,
         GenderService,
+        QualityLevelService,
+        StorageLocationService,
       ],
     };
   }
