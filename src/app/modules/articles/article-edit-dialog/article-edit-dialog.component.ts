@@ -90,6 +90,8 @@ export class ArticleEditDialogComponent {
       // this.dialog.closeAll();
       // const key = <string>_('Nothing changed');
       this.snackbar.success('Nothing changed');
+      // TODO finish saving
+      // TODO why tf aren't the articles loading? continue HERE
       return;
     }
     console.log(data);
